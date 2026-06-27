@@ -71,7 +71,7 @@ const BASE_STYLE: React.CSSProperties = {
 
 const ACTIVE_STYLE: React.CSSProperties = {
   ...BASE_STYLE,
-  borderColor: 'var(--at-alpine-green)',
+  border: '1px solid var(--at-alpine-green)',
   color: 'var(--at-alpine-green)',
   background: 'var(--at-alpine-light)',
 };
