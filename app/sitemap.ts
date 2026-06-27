@@ -1,0 +1,1 @@
+import type {MetadataRoute}from'next';export default function():MetadataRoute.Sitemap{return ['/','/de','/cz','/en','/de/fragebogen','/cz/fragebogen','/en/fragebogen','/impressum','/datenschutz','/login','/partner/onboarding','/partner/dashboard'].map(path=>({url:`https://alpentalent.com${path}`,lastModified:new Date()}));}

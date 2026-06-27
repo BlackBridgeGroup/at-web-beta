@@ -1,0 +1,3 @@
+import{NextResponse}from'next/server';import{createAdminClient}from'../../../lib/supabase/admin';
+const allowed=['employer','partner','general'];
+export async function POST(request:Request){const body=await request.json();const kind=String(body.kind||'');if(!allowed.includes(kind))return NextResponse.json({error:'invalid_kind'},{status:400});const payload=body.payload&&typeof body.payload==='object'?body.payload:{};const locale=String(body.locale||'de');const admin=createAdminClient();const{error}=await admin.from('receptionist_leads').insert({kind,locale,payload,status:kind==='partner'?'NEW_PARTNER_LEAD':'NEW_LEAD'});return error?NextResponse.json({error:error.message},{status:400}):NextResponse.json({ok:true})}

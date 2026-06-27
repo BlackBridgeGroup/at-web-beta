@@ -1,0 +1,1 @@
+import type {MetadataRoute}from'next';export default function():MetadataRoute.Robots{return{rules:{userAgent:'*',allow:'/',disallow:['/candidate','/employer','/dashboard']},sitemap:'https://alpentalent.com/sitemap.xml'}}
