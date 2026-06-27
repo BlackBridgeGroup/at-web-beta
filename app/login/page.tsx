@@ -16,7 +16,7 @@ export default async function Login() {
 
   const ck = await cookies();
   const hd = await headers();
-  const localeRaw = ck.get('alpentalent_locale')?.value || hd.get('accept-language') || 'en';
+  const localeRaw = ck.get('alpentalent_locale')?.value || hd.get('accept-language') || 'de';
   const locale = normalizeLocale(localeRaw);
   const d = getDictionary(locale);
 

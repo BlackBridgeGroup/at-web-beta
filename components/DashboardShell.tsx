@@ -47,6 +47,30 @@ const navByRole: Record<Role, NavItem[]> = {
   partner: partnerNav,
 };
 
+// Localized nav labels keyed by href. EN falls back to the labels defined above.
+const NAV_LABELS: Record<string, Record<string, string>> = {
+  de: {
+    '/candidate/dashboard': 'Übersicht', '/candidate/matches': 'Stellen',
+    '/candidate/applications': 'Bewerbungen', '/candidate/messages': 'Nachrichten',
+    '/candidate/saved': 'Gespeichert', '/candidate/documents': 'Dokumente', '/candidate/profile': 'Profil',
+    '/employer/dashboard': 'Übersicht', '/employer/vacancies': 'Stellenangebote',
+    '/employer/candidates': 'Kandidaten', '/employer/interviews': 'Interviews',
+    '/employer/placements': 'Vermittlungen', '/employer/campaigns': 'Kampagnen',
+    '/employer/invoices': 'Rechnungen', '/employer/branding': 'Employer Branding',
+    '/partner/dashboard': 'Übersicht', '/partner/pipeline': 'Pipeline',
+  },
+  cz: {
+    '/candidate/dashboard': 'Přehled', '/candidate/matches': 'Pozice',
+    '/candidate/applications': 'Přihlášky', '/candidate/messages': 'Zprávy',
+    '/candidate/saved': 'Uložené', '/candidate/documents': 'Dokumenty', '/candidate/profile': 'Profil',
+    '/employer/dashboard': 'Přehled', '/employer/vacancies': 'Pozice',
+    '/employer/candidates': 'Kandidáti', '/employer/interviews': 'Pohovory',
+    '/employer/placements': 'Umístění', '/employer/campaigns': 'Kampaně',
+    '/employer/invoices': 'Faktury', '/employer/branding': 'Employer branding',
+    '/partner/dashboard': 'Přehled', '/partner/pipeline': 'Pipeline',
+  },
+};
+
 interface DashboardShellProps {
   children: ReactNode;
   role: Role;
@@ -62,7 +86,10 @@ export function DashboardShell({
   userName,
   signOutLabel = 'Sign out',
 }: DashboardShellProps) {
-  const nav = navByRole[role];
+  const labels = NAV_LABELS[locale];
+  const nav = labels
+    ? navByRole[role].map(item => ({ ...item, label: labels[item.href] ?? item.label }))
+    : navByRole[role];
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg)' }}>

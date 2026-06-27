@@ -7,16 +7,17 @@ type Role = 'candidate' | 'employer' | 'partner';
 
 export function GoogleLogin({ t }: { t: any }) {
   const q = useSearchParams();
-  const preset = (['candidate', 'employer', 'partner'].includes(q.get('role') || '') ? q.get('role') : '') as '' | Role;
-  const [mode, setMode] = useState<'choose' | 'signup'>(preset ? 'signup' : 'choose');
-  const [role, setRole] = useState<Role>((preset || 'candidate') as Role);
+  const preset = (['candidate', 'employer', 'partner'].includes(q.get('role') || '')
+    ? (q.get('role') as Role)
+    : 'candidate') as Role;
+  const [role, setRole] = useState<Role>(preset);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  async function signIn(r?: Role) {
+  async function signIn() {
     setLoading(true);
     const origin = window.location.origin;
-    const redirectTo = `${origin}/auth/callback${r ? `?role=${r}` : ''}`;
+    const redirectTo = `${origin}/auth/callback?role=${role}`;
     const { error } = await createClient().auth.signInWithOAuth({
       provider: 'google',
       options: { redirectTo, scopes: 'openid email profile' },
@@ -30,68 +31,34 @@ export function GoogleLogin({ t }: { t: any }) {
     { value: 'partner', label: t.partner },
   ];
 
-  if (mode === 'signup') {
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>
-        <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--text-muted)', marginBottom: 4 }}>{t.chooseRole}</p>
-
-        {/* Role toggle */}
-        <div style={{ display: 'flex', gap: 6 }}>
-          {roles.map(r => (
-            <button
-              key={r.value}
-              type="button"
-              onClick={() => setRole(r.value)}
-              className={role === r.value ? 'at-btn at-btn--primary at-btn--sm' : 'at-btn at-btn--secondary at-btn--sm'}
-              style={{ flex: 1, justifyContent: 'center' }}
-            >
-              {r.label}
-            </button>
-          ))}
-        </div>
-
-        <button
-          className="at-btn at-btn--primary"
-          style={{ width: '100%', justifyContent: 'center', marginTop: 4 }}
-          onClick={() => signIn(role)}
-          disabled={loading}
-        >
-          {loading ? '…' : t.continue}
-        </button>
-
-        <button
-          type="button"
-          className="at-btn at-btn--ghost at-btn--sm"
-          style={{ width: '100%', justifyContent: 'center' }}
-          onClick={() => setMode('choose')}
-        >
-          {t.back}
-        </button>
-
-        {error && <p role="alert" style={{ color: 'var(--danger)', fontSize: '0.875rem', margin: 0 }}>{error}</p>}
-      </div>
-    );
-  }
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>
+      <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--text-muted)', marginBottom: 4 }}>{t.chooseRole}</p>
+
+      {/* Role toggle — always visible so the user picks before signing in */}
+      <div style={{ display: 'flex', gap: 6 }}>
+        {roles.map(r => (
+          <button
+            key={r.value}
+            type="button"
+            onClick={() => setRole(r.value)}
+            aria-pressed={role === r.value}
+            className={role === r.value ? 'at-btn at-btn--primary at-btn--sm' : 'at-btn at-btn--secondary at-btn--sm'}
+            style={{ flex: 1, justifyContent: 'center' }}
+          >
+            {r.label}
+          </button>
+        ))}
+      </div>
+
       <button
         className="at-btn at-btn--primary"
-        style={{ width: '100%', justifyContent: 'center' }}
-        onClick={() => signIn()}
+        style={{ width: '100%', justifyContent: 'center', marginTop: 4 }}
+        onClick={signIn}
         disabled={loading}
       >
         <GoogleIcon />
-        {loading ? '…' : t.signIn}
-      </button>
-
-      <button
-        type="button"
-        className="at-btn at-btn--ghost at-btn--sm"
-        style={{ width: '100%', justifyContent: 'center' }}
-        onClick={() => setMode('signup')}
-      >
-        {t.newHere}
+        {loading ? '…' : (t.continue || t.signIn)}
       </button>
 
       {error && <p role="alert" style={{ color: 'var(--danger)', fontSize: '0.875rem', margin: 0 }}>{error}</p>}

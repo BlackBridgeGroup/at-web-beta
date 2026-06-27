@@ -1,2 +1,6 @@
-import { LanguageChoice } from '../components/LanguageChoice';
-export default function Home() { return <LanguageChoice />; }
+import { redirect } from 'next/navigation';
+
+// German is the primary language of the site — land visitors on /de by default.
+export default function Home() {
+  redirect('/de');
+}

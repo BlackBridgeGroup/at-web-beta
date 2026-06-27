@@ -10,15 +10,101 @@ export function generateStaticParams() {
 
 export const metadata: Metadata = { title: 'AlpenLife Resources' };
 
-const guides = [
-  { slug: 'moving-to-austria',                    category: 'Moving',   title: 'Moving to Austria: the practical guide',        summary: 'Registration, Anmeldung, bank account, SIM card — everything you need in the first two weeks.',                        readTime: '8 min' },
-  { slug: 'german-for-hospitality',               category: 'Language', title: 'German for hospitality workers',                summary: 'The 100 phrases you\'ll use every day in a hotel or restaurant. No fluff, just the essentials.',                       readTime: '6 min' },
-  { slug: 'understanding-your-austrian-contract', category: 'Legal',    title: 'Understanding your Austrian work contract',     summary: 'What Kollektivvertrag means, what you\'re entitled to, and what to check before you sign.',                            readTime: '7 min' },
-  { slug: 'staff-housing-in-austria',             category: 'Housing',  title: 'Staff housing in Austrian hotels',              summary: 'What to expect, what\'s usually included, and your rights as a tenant.',                                             readTime: '5 min' },
-  { slug: 'seasonal-vs-permanent-work',           category: 'Work',     title: 'Seasonal vs permanent roles in Austria',        summary: 'The pros and cons of each, and how to plan a career path through Austrian hospitality.',                            readTime: '6 min' },
+type Guide = {
+  slug: string;
+  cat: 'Moving' | 'Language' | 'Legal' | 'Housing' | 'Work';
+  catL: Record<string, string>;
+  title: Record<string, string>;
+  summary: Record<string, string>;
+  min: number;
+};
+
+const GUIDES: Guide[] = [
+  {
+    slug: 'moving-to-austria', cat: 'Moving',
+    catL: { de: 'Umzug', cz: 'Stěhování', en: 'Moving' },
+    title: {
+      de: 'Umzug nach Österreich: der Praxisleitfaden',
+      cz: 'Stěhování do Rakouska: praktický průvodce',
+      en: 'Moving to Austria: the practical guide',
+    },
+    summary: {
+      de: 'Anmeldung, Bankkonto, SIM-Karte — alles, was du in den ersten zwei Wochen brauchst.',
+      cz: 'Přihlášení, bankovní účet, SIM karta — vše, co potřebuješ v prvních dvou týdnech.',
+      en: 'Registration, Anmeldung, bank account, SIM card — everything you need in the first two weeks.',
+    },
+    min: 8,
+  },
+  {
+    slug: 'german-for-hospitality', cat: 'Language',
+    catL: { de: 'Sprache', cz: 'Jazyk', en: 'Language' },
+    title: {
+      de: 'Deutsch für Hotellerie & Gastronomie',
+      cz: 'Němčina pro pohostinství',
+      en: 'German for hospitality workers',
+    },
+    summary: {
+      de: 'Die 100 Sätze, die du täglich im Hotel oder Restaurant brauchst. Ohne Schnickschnack.',
+      cz: '100 frází, které použiješ každý den v hotelu nebo restauraci. Žádná vata, jen to podstatné.',
+      en: "The 100 phrases you'll use every day in a hotel or restaurant. No fluff, just the essentials.",
+    },
+    min: 6,
+  },
+  {
+    slug: 'understanding-your-austrian-contract', cat: 'Legal',
+    catL: { de: 'Recht', cz: 'Právo', en: 'Legal' },
+    title: {
+      de: 'Dein österreichischer Arbeitsvertrag verständlich',
+      cz: 'Rozumět rakouské pracovní smlouvě',
+      en: 'Understanding your Austrian work contract',
+    },
+    summary: {
+      de: 'Was der Kollektivvertrag bedeutet, worauf du Anspruch hast und was du vor der Unterschrift prüfen solltest.',
+      cz: 'Co znamená Kollektivvertrag, na co máš nárok a co zkontrolovat před podpisem.',
+      en: "What Kollektivvertrag means, what you're entitled to, and what to check before you sign.",
+    },
+    min: 7,
+  },
+  {
+    slug: 'staff-housing-in-austria', cat: 'Housing',
+    catL: { de: 'Wohnen', cz: 'Bydlení', en: 'Housing' },
+    title: {
+      de: 'Personalunterkünfte in österreichischen Hotels',
+      cz: 'Ubytování pro personál v rakouských hotelech',
+      en: 'Staff housing in Austrian hotels',
+    },
+    summary: {
+      de: 'Was dich erwartet, was üblicherweise inklusive ist und welche Rechte du als Mieter hast.',
+      cz: 'Co očekávat, co bývá v ceně a jaká máš práva nájemníka.',
+      en: "What to expect, what's usually included, and your rights as a tenant.",
+    },
+    min: 5,
+  },
+  {
+    slug: 'seasonal-vs-permanent-work', cat: 'Work',
+    catL: { de: 'Arbeit', cz: 'Práce', en: 'Work' },
+    title: {
+      de: 'Saison- vs. Ganzjahresstellen in Österreich',
+      cz: 'Sezónní vs. stálé pozice v Rakousku',
+      en: 'Seasonal vs permanent roles in Austria',
+    },
+    summary: {
+      de: 'Vor- und Nachteile beider und wie du deinen Karriereweg in der Hotellerie planst.',
+      cz: 'Výhody a nevýhody obojího a jak si naplánovat kariéru v rakouském pohostinství.',
+      en: 'The pros and cons of each, and how to plan a career path through Austrian hospitality.',
+    },
+    min: 6,
+  },
 ];
 
-function IconTile({ category, size = 48 }: { category: string; size?: number }) {
+const READ_LABEL: Record<string, string> = { de: 'Leitfaden lesen', cz: 'Číst průvodce', en: 'Read guide' };
+const MIN_LABEL: Record<string, (m: number) => string> = {
+  de: m => `${m} Min. Lesezeit`,
+  cz: m => `${m} min čtení`,
+  en: m => `${m} min read`,
+};
+
+function IconTile({ category, size = 22 }: { category: string; size?: number }) {
   const s = size;
   const shared = { width: s, height: s, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, 'aria-hidden': true };
   switch (category) {
@@ -43,156 +129,53 @@ export default async function Resources({ params }: { params: Promise<{ locale: 
   const locale = normalizeLocale(raw) as Locale;
   const d = getDictionary(locale);
   const r = d.ui.resources;
-
-  const [featured, ...rest] = guides;
+  const readLabel = READ_LABEL[locale] ?? READ_LABEL.de;
+  const minLabel = MIN_LABEL[locale] ?? MIN_LABEL.de;
 
   return (
     <SiteShell locale={locale}>
       <style>{`
-        .guide-card {
-          transition: border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
-        }
-        .guide-card:hover {
-          border-color: var(--at-alpine-green) !important;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px color-mix(in srgb, var(--at-alpine-green) 12%, transparent);
-        }
-        .guide-card:hover .guide-arrow {
-          transform: translateX(3px);
-        }
-        .guide-arrow {
-          transition: transform var(--dur-fast) var(--ease);
-        }
+        .guide-card { transition: border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease); }
+        .guide-card:hover { border-color: var(--at-alpine-green) !important; transform: translateY(-2px); box-shadow: 0 8px 24px color-mix(in srgb, var(--at-alpine-green) 12%, transparent); }
+        .guide-card:hover .guide-arrow { transform: translateX(3px); }
+        .guide-arrow { transition: transform var(--dur-fast) var(--ease); }
       `}</style>
 
       {/* Hero */}
-      <div style={{
-        background: 'linear-gradient(135deg, var(--at-alpine-green) 0%, #1E4D38 100%)',
-        paddingTop: 'clamp(48px, 7vw, 72px)',
-        paddingBottom: 0,
-        position: 'relative',
-      }}>
+      <div style={{ background: 'linear-gradient(135deg, var(--at-alpine-green) 0%, #1E4D38 100%)', paddingTop: 'clamp(48px, 7vw, 72px)', paddingBottom: 0, position: 'relative' }}>
         <div className="at-container" style={{ paddingBottom: 'clamp(40px, 5vw, 56px)' }}>
-          <p style={{ margin: '0 0 10px', fontSize: '0.6875rem', fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)' }}>
-            {r.eyebrow}
-          </p>
-          <h1 className="at-display" style={{ margin: '0 0 var(--space-2)', color: '#fff', fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', maxWidth: 600 }}>
-            {r.heading}
-          </h1>
-          <p style={{ margin: 0, color: 'rgba(255,255,255,0.8)', fontSize: '1rem', lineHeight: 1.65, maxWidth: 520 }}>
-            {r.sub}
-          </p>
+          <p style={{ margin: '0 0 10px', fontSize: '0.6875rem', fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)' }}>{r.eyebrow}</p>
+          <h1 className="at-display" style={{ margin: '0 0 var(--space-2)', color: '#fff', fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', maxWidth: 600 }}>{r.heading}</h1>
+          <p style={{ margin: 0, color: 'rgba(255,255,255,0.8)', fontSize: '1rem', lineHeight: 1.65, maxWidth: 520 }}>{r.sub}</p>
         </div>
-
-        {/* Mountain-ridge divider */}
         <svg viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true" style={{ display: 'block', width: '100%', height: 52 }}>
           <path d="M0 80 L60 40 L120 65 L180 20 L240 50 L300 10 L360 45 L420 25 L480 55 L540 15 L600 50 L660 30 L720 60 L780 20 L840 55 L900 35 L960 65 L1020 25 L1080 50 L1140 15 L1200 45 L1200 80 L0 80 Z" fill="var(--bg)" />
         </svg>
       </div>
 
+      {/* Uniform card grid — equal cards, theme-aware (works in light + dark) */}
       <div className="at-container" style={{ paddingBlock: 'var(--space-6)' }}>
-
-        {/* Featured guide */}
-        <Link
-          href={`/${locale}/resources/${featured.slug}`}
-          className="at-card guide-card"
-          style={{
-            display: 'flex',
-            gap: 'var(--space-4)',
-            padding: 'var(--space-5)',
-            marginBottom: 'var(--space-3)',
-            textDecoration: 'none',
-            background: 'var(--at-alpine-light)',
-            border: '1px solid color-mix(in srgb, var(--at-alpine-green) 18%, transparent)',
-            borderRadius: 20,
-            flexWrap: 'wrap',
-            alignItems: 'flex-start',
-          }}
-        >
-          {/* Icon */}
-          <div style={{
-            width: 64,
-            height: 64,
-            borderRadius: 16,
-            background: 'color-mix(in srgb, var(--at-alpine-green) 12%, transparent)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0,
-            color: 'var(--at-alpine-green)',
-          }} aria-hidden="true">
-            <IconTile category={featured.category} size={28} />
-          </div>
-
-          {/* Copy */}
-          <div style={{ flex: 1, minWidth: 240 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-              <span style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--at-alpine-green)' }}>
-                {featured.category}
-              </span>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>{featured.readTime} read</span>
-            </div>
-            <h2 className="at-h2" style={{ margin: '0 0 var(--space-1)', color: 'var(--text)', fontSize: 'clamp(1.125rem, 2.5vw, 1.375rem)' }}>
-              {featured.title}
-            </h2>
-            <p style={{ margin: '0 0 var(--space-3)', color: 'var(--text-muted)', fontSize: '0.9375rem', lineHeight: 1.65 }}>
-              {featured.summary}
-            </p>
-            <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--at-alpine-green)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-              Read guide <span className="guide-arrow">→</span>
-            </span>
-          </div>
-        </Link>
-
-        {/* 2-up grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 'var(--space-2)' }}>
-          {rest.map(guide => (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 'var(--space-3)' }}>
+          {GUIDES.map(g => (
             <Link
-              key={guide.slug}
-              href={`/${locale}/resources/${guide.slug}`}
+              key={g.slug}
+              href={`/${locale}/resources/${g.slug}`}
               className="at-card guide-card"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 'var(--space-2)',
-                padding: 'var(--space-4)',
-                textDecoration: 'none',
-                borderRadius: 20,
-                border: '1px solid var(--border)',
-              }}
+              style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', padding: 'var(--space-4)', textDecoration: 'none', borderRadius: 20, border: '1px solid var(--border)', background: 'var(--bg-elevated)' }}
             >
-              {/* Icon tile */}
-              <div style={{
-                width: 48,
-                height: 48,
-                borderRadius: 12,
-                background: 'var(--at-alpine-light)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--at-alpine-green)',
-                flexShrink: 0,
-              }} aria-hidden="true">
-                <IconTile category={guide.category} size={22} />
+              <div style={{ width: 48, height: 48, borderRadius: 12, background: 'color-mix(in srgb, var(--at-alpine-green) 14%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--at-alpine-green)', flexShrink: 0 }} aria-hidden="true">
+                <IconTile category={g.cat} size={22} />
               </div>
-
-              {/* Category + time */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--at-alpine-green)' }}>
-                  {guide.category}
-                </span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>{guide.readTime} read</span>
+                <span style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--at-alpine-green)' }}>{g.catL[locale] ?? g.catL.de}</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>{minLabel(g.min)}</span>
               </div>
-
-              {/* Title + summary */}
               <div>
-                <p className="at-h3" style={{ margin: '0 0 6px', color: 'var(--text)' }}>{guide.title}</p>
-                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.875rem', lineHeight: 1.6 }}>{guide.summary}</p>
+                <p className="at-h3" style={{ margin: '0 0 6px', color: 'var(--text)' }}>{g.title[locale] ?? g.title.de}</p>
+                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.875rem', lineHeight: 1.6 }}>{g.summary[locale] ?? g.summary.de}</p>
               </div>
-
-              {/* Arrow */}
               <span style={{ marginTop: 'auto', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--at-alpine-green)', display: 'inline-flex', alignItems: 'center', gap: 3 }}>
-                Read guide <span className="guide-arrow">→</span>
+                {readLabel} <span className="guide-arrow">→</span>
               </span>
             </Link>
           ))}

@@ -51,11 +51,11 @@ export default async function JobsPage({
   const filteredJobs = mockJobs.filter(job => matchesRole(job, role));
 
   const PERSONA_CHIPS = [
-    { slug: 'reception',    label: p.reception },
-    { slug: 'chef',         label: p.chef },
-    { slug: 'housekeeping', label: p.housekeeping },
-    { slug: 'waiter',       label: p.waiter },
-    { slug: 'manager',      label: p.manager },
+    { slug: 'reception',    emoji: '🛎️', label: p.reception },
+    { slug: 'chef',         emoji: '👨‍🍳', label: p.chef },
+    { slug: 'housekeeping', emoji: '🛏️', label: p.housekeeping },
+    { slug: 'waiter',       emoji: '🍽️', label: p.waiter },
+    { slug: 'manager',      emoji: '💼', label: p.manager },
   ];
 
   return (
@@ -101,7 +101,7 @@ export default async function JobsPage({
                   textDecoration: 'none',
                 } : { textDecoration: 'none' }}
               >
-                {chip.label}
+                <span aria-hidden="true" style={{ marginRight: 5 }}>{chip.emoji}</span>{chip.label}
               </Link>
             );
           })}
