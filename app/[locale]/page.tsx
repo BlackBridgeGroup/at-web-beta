@@ -246,31 +246,12 @@ export default async function LocaleHome({
     buildBreadcrumbSchema(locale, breadcrumbName),
   ];
 
-  // ── Enriched why-bento tile data ─────────────────────────────────────────
-  const statA = isEmployer
-    ? { stat: '9/10', title: 'Hotels buchen erneut', verify: true }
-    : locale === 'cz'
-    ? { stat: '9 z 10', title: 'kandidátů nastoupí', verify: true }
-    : { stat: '9 in 10', title: 'candidates start', verify: true };
-
-  const statB = isEmployer
-    ? { stat: '5–10', title: 'Werktage bis Einsatz', verify: true }
-    : locale === 'cz'
-    ? { stat: '48h', title: 'první nabídky' }
-    : { stat: '48h', title: 'first matches' };
-
-  const mediaTitle = isEmployer ? 'Ihr nächstes Teammitglied' : locale === 'cz' ? 'Tvé nové pracoviště' : 'Your Austrian workplace';
-  const avatarTitle = isEmployer ? '300+ Fachkräfte im Pool' : locale === 'cz' ? '10 000+ odborníků' : '10,000+ professionals';
-  const avatarBody = isEmployer ? 'Vorqualifiziert. Einsatzbereit.' : locale === 'cz' ? 'Připraveni pro Rakousko.' : 'Ready for Austria.';
-
-  const enrichedWhyTiles = [
-    ...hp.why.tiles.slice(0, 3).map((t: any, i: number) => ({ title: t.title, body: t.body, icon: whyIcons[i] })),
-    { title: hp.why.tiles[3].title, body: hp.why.tiles[3].body, icon: whyIcons[3], accent: true, span: 2 as const },
-    { variant: 'stat' as const, ...statA },
-    { variant: 'stat' as const, ...statB },
-    { variant: 'media' as const, title: mediaTitle },
-    { variant: 'avatars' as const, title: avatarTitle, body: avatarBody },
-  ];
+  // ── Why-bento tiles: clean, uniform feature cards in a single row ─────────
+  const enrichedWhyTiles = hp.why.tiles.map((t: any, i: number) => ({
+    title: t.title,
+    body: t.body,
+    icon: whyIcons[i],
+  }));
 
   return (
     <SiteShell locale={locale}>
