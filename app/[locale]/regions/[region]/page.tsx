@@ -6,14 +6,77 @@ import { locales, normalizeLocale, type Locale } from '../../../../lib/i18n';
 import { mockJobs } from '../../../../lib/mockJobs';
 import type { Metadata } from 'next';
 
-const regions = [
-  { slug: 'tyrol',      name: 'Tyrol',     nameDe: 'Tirol',      highlights: 'Kitzbühel, Innsbruck, St. Anton',           body: 'Tyrol is Austria\'s premier ski and outdoor destination, home to some of the country\'s most iconic resorts. Hotels here are open year-round, with peak demand in winter (December–March) and summer (June–August). Housing is almost always included. Languages: German is essential for most roles; English is increasingly common in five-star properties.' },
-  { slug: 'salzburg',   name: 'Salzburg',  nameDe: 'Salzburg',   highlights: 'Salzburg city, Zell am See, Obertauern',    body: 'Salzburg combines Austria\'s most famous city with mountain resort towns. Zell am See and Obertauern attract international guests all year. English is widely spoken in city hotels. Excellent transport links to Germany and Czech Republic make it a popular placement region.' },
-  { slug: 'vorarlberg', name: 'Vorarlberg',nameDe: 'Vorarlberg', highlights: 'Lech, Bregenz, Montafon',                   body: 'Austria\'s westernmost province is home to Lech am Arlberg — one of the most exclusive ski areas in the Alps. Salaries and tips tend to be higher than average. The region has strong connections to Germany and Switzerland. Hotels typically run from December to April and June to October.' },
-  { slug: 'vienna',     name: 'Vienna',    nameDe: 'Wien',        highlights: 'International hotels, restaurants, fine dining', body: 'Vienna hosts some of Europe\'s finest grand hotels and a thriving restaurant scene. Roles here are predominantly year-round and include more management and fine-dining positions than alpine resorts. German is essential. The city\'s international character means multiple languages are an asset.' },
-  { slug: 'styria',     name: 'Styria',    nameDe: 'Steiermark', highlights: 'Graz, Schladming, Bad Aussee',               body: 'Styria is less crowded than Tyrol but equally beautiful. Schladming hosted the 2013 Alpine Ski World Championships and remains a major resort. The Graz restaurant scene is growing fast. Salaries are comparable to other regions; housing is often included in resort areas.' },
-  { slug: 'carinthia',  name: 'Carinthia', nameDe: 'Kärnten',    highlights: 'Klagenfurt, Velden, Villach',                body: 'Carinthia borders Slovenia and Italy, giving it a distinctly Mediterranean feel. Lake Wörthersee is Austria\'s most popular summer resort area. The season runs from May to September. Italian and Slovenian speakers find natural advantages here; German remains essential.' },
+type LS = Record<string, string>;
+type Region = { slug: string; name: LS; highlights: LS; body: LS };
+
+const regions: Region[] = [
+  {
+    slug: 'tyrol',
+    name: { de: 'Tirol', cz: 'Tyrolsko', en: 'Tyrol' },
+    highlights: { de: 'Kitzbühel, Innsbruck, St. Anton', cz: 'Kitzbühel, Innsbruck, St. Anton', en: 'Kitzbühel, Innsbruck, St. Anton' },
+    body: {
+      en: "Tyrol is Austria's premier ski and outdoor destination, home to some of the country's most iconic resorts. Hotels here are open year-round, with peak demand in winter (December–March) and summer (June–August). Housing is almost always included. German is essential for most roles; English is increasingly common in five-star properties.",
+      de: 'Tirol ist Österreichs führende Ski- und Outdoor-Destination mit einigen der bekanntesten Resorts des Landes. Hotels haben hier ganzjährig geöffnet, mit Spitzen im Winter (Dezember–März) und Sommer (Juni–August). Eine Unterkunft ist fast immer inklusive. Deutsch ist für die meisten Stellen unerlässlich; Englisch wird in Fünf-Sterne-Häusern immer üblicher.',
+      cz: 'Tyrolsko je přední rakouská lyžařská a outdoorová destinace s několika nejznámějšími středisky v zemi. Hotely tu mají otevřeno celoročně, s vrcholem v zimě (prosinec–březen) a v létě (červen–srpen). Ubytování bývá téměř vždy v ceně. Němčina je pro většinu pozic nezbytná; angličtina je stále běžnější v pětihvězdičkových hotelech.',
+    },
+  },
+  {
+    slug: 'salzburg',
+    name: { de: 'Salzburg', cz: 'Salcbursko', en: 'Salzburg' },
+    highlights: { de: 'Salzburg, Zell am See, Obertauern', cz: 'Salzburg, Zell am See, Obertauern', en: 'Salzburg city, Zell am See, Obertauern' },
+    body: {
+      en: 'Salzburg combines Austria\'s most famous city with mountain resort towns. Zell am See and Obertauern attract international guests all year. English is widely spoken in city hotels. Excellent transport links to Germany and Czech Republic make it a popular placement region.',
+      de: 'Salzburg verbindet Österreichs berühmteste Stadt mit Bergresort-Orten. Zell am See und Obertauern ziehen das ganze Jahr internationale Gäste an. In Stadthotels wird viel Englisch gesprochen. Gute Verkehrsanbindungen nach Deutschland und Tschechien machen die Region zu einem beliebten Einsatzgebiet.',
+      cz: 'Salcbursko spojuje nejslavnější rakouské město s horskými středisky. Zell am See a Obertauern lákají mezinárodní hosty po celý rok. V městských hotelech se hodně mluví anglicky. Dobré spojení do Německa a Česka dělá z regionu oblíbenou oblast pro umístění.',
+    },
+  },
+  {
+    slug: 'vorarlberg',
+    name: { de: 'Vorarlberg', cz: 'Vorarlbersko', en: 'Vorarlberg' },
+    highlights: { de: 'Lech, Bregenz, Montafon', cz: 'Lech, Bregenz, Montafon', en: 'Lech, Bregenz, Montafon' },
+    body: {
+      en: "Austria's westernmost province is home to Lech am Arlberg — one of the most exclusive ski areas in the Alps. Salaries and tips tend to be higher than average. The region has strong connections to Germany and Switzerland. Hotels typically run from December to April and June to October.",
+      de: 'Österreichs westlichste Provinz beheimatet Lech am Arlberg — eines der exklusivsten Skigebiete der Alpen. Gehälter und Trinkgelder liegen über dem Durchschnitt. Die Region ist eng mit Deutschland und der Schweiz verbunden. Hotels haben meist von Dezember bis April und von Juni bis Oktober geöffnet.',
+      cz: 'Nejzápadnější rakouská provincie je domovem Lech am Arlberg — jednoho z nejexkluzivnějších lyžařských areálů v Alpách. Platy a spropitné bývají nadprůměrné. Region má silné vazby na Německo a Švýcarsko. Hotely obvykle fungují od prosince do dubna a od června do října.',
+    },
+  },
+  {
+    slug: 'vienna',
+    name: { de: 'Wien', cz: 'Vídeň', en: 'Vienna' },
+    highlights: { de: 'Internationale Hotels, Restaurants, Fine Dining', cz: 'Mezinárodní hotely, restaurace, fine dining', en: 'International hotels, restaurants, fine dining' },
+    body: {
+      en: "Vienna hosts some of Europe's finest grand hotels and a thriving restaurant scene. Roles here are predominantly year-round and include more management and fine-dining positions than alpine resorts. German is essential. The city's international character means multiple languages are an asset.",
+      de: 'Wien beherbergt einige der feinsten Grandhotels Europas und eine lebendige Restaurantszene. Stellen sind hier überwiegend ganzjährig und umfassen mehr Management- und Fine-Dining-Positionen als alpine Resorts. Deutsch ist unerlässlich. Der internationale Charakter der Stadt macht mehrere Sprachen zum Vorteil.',
+      cz: 'Vídeň hostí jedny z nejlepších grandhotelů v Evropě a živou restaurační scénu. Pozice jsou tu převážně celoroční a zahrnují víc manažerských a fine-dining míst než alpská střediska. Němčina je nezbytná. Mezinárodní charakter města dělá z více jazyků výhodu.',
+    },
+  },
+  {
+    slug: 'styria',
+    name: { de: 'Steiermark', cz: 'Štýrsko', en: 'Styria' },
+    highlights: { de: 'Graz, Schladming, Bad Aussee', cz: 'Graz, Schladming, Bad Aussee', en: 'Graz, Schladming, Bad Aussee' },
+    body: {
+      en: 'Styria is less crowded than Tyrol but equally beautiful. Schladming hosted the 2013 Alpine Ski World Championships and remains a major resort. The Graz restaurant scene is growing fast. Salaries are comparable to other regions; housing is often included in resort areas.',
+      de: 'Die Steiermark ist weniger überlaufen als Tirol, aber genauso schön. Schladming war Austragungsort der Alpinen Ski-WM 2013 und ist nach wie vor ein bedeutendes Resort. Die Grazer Restaurantszene wächst schnell. Die Gehälter sind mit anderen Regionen vergleichbar; in Resort-Gebieten ist die Unterkunft oft inklusive.',
+      cz: 'Štýrsko je méně přeplněné než Tyrolsko, ale stejně krásné. Schladming hostil mistrovství světa v alpském lyžování 2013 a zůstává významným střediskem. Restaurační scéna v Grazu rychle roste. Platy jsou srovnatelné s ostatními regiony; ve střediscích bývá ubytování často v ceně.',
+    },
+  },
+  {
+    slug: 'carinthia',
+    name: { de: 'Kärnten', cz: 'Korutany', en: 'Carinthia' },
+    highlights: { de: 'Klagenfurt, Velden, Villach', cz: 'Klagenfurt, Velden, Villach', en: 'Klagenfurt, Velden, Villach' },
+    body: {
+      en: "Carinthia borders Slovenia and Italy, giving it a distinctly Mediterranean feel. Lake Wörthersee is Austria's most popular summer resort area. The season runs from May to September. Italian and Slovenian speakers find natural advantages here; German remains essential.",
+      de: 'Kärnten grenzt an Slowenien und Italien und hat dadurch ein mediterranes Flair. Der Wörthersee ist Österreichs beliebtestes Sommerresort-Gebiet. Die Saison läuft von Mai bis September. Italienisch- und Slowenischsprechende haben hier natürliche Vorteile; Deutsch bleibt unerlässlich.',
+      cz: 'Korutany sousedí se Slovinskem a Itálií, díky čemuž mají středomořskou atmosféru. Jezero Wörthersee je nejoblíbenější rakouská letní rekreační oblast. Sezóna trvá od května do září. Mluvčí italštiny a slovinštiny tu mají přirozenou výhodu; němčina zůstává nezbytná.',
+    },
+  },
 ];
+
+const UI: Record<string, { all: string; about: string; openRoles: string; newRoles: string; browse: string; seeAll: string; other: string }> = {
+  de: { all: '← Alle Regionen', about: 'Über', openRoles: 'Offene Stellen in', newRoles: 'Neue Stellen kommen hier regelmäßig dazu.', browse: 'Alle Stellen ansehen →', seeAll: 'Alle Stellen in Österreich →', other: 'Andere Regionen' },
+  cz: { all: '← Všechny regiony', about: 'O regionu', openRoles: 'Volné pozice v', newRoles: 'Nové pozice tu přibývají pravidelně.', browse: 'Procházet všechny pozice →', seeAll: 'Všechny pozice v Rakousku →', other: 'Další regiony' },
+  en: { all: '← All regions', about: 'About', openRoles: 'Open roles in', newRoles: 'New roles here are added regularly.', browse: 'Browse all jobs →', seeAll: 'See all Austria roles →', other: 'Other regions' },
+};
 
 function RegionIcon({ slug, size = 24 }: { slug: string; size?: number }) {
   const s = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, 'aria-hidden': true };
@@ -29,155 +92,95 @@ function RegionIcon({ slug, size = 24 }: { slug: string; size?: number }) {
 }
 
 export function generateStaticParams() {
-  return locales.flatMap(locale =>
-    regions.map(r => ({ locale, region: r.slug }))
-  );
+  return locales.flatMap(locale => regions.map(r => ({ locale, region: r.slug })));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string; region: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; region: string }> }): Promise<Metadata> {
   const { locale: raw, region: slug } = await params;
   const locale = normalizeLocale(raw) as Locale;
   const r = regions.find(x => x.slug === slug);
   if (!r) return {};
+  const name = r.name[locale] ?? r.name.en;
   return {
-    title: `Hospitality Jobs in ${r.name}, Austria`,
-    description: `Find hospitality jobs in ${r.name} — hotels, restaurants and resorts in ${r.highlights}.`,
+    title: `Hospitality Jobs in ${name}, Austria`,
+    description: `Find hospitality jobs in ${name} — hotels, restaurants and resorts in ${r.highlights[locale] ?? r.highlights.en}.`,
     alternates: {
       canonical: `https://alpentalent.com/${locale}/regions/${slug}`,
-      languages: {
-        de: `/de/regions/${slug}`,
-        cs: `/cz/regions/${slug}`,
-        en: `/en/regions/${slug}`,
-      },
+      languages: { de: `/de/regions/${slug}`, cs: `/cz/regions/${slug}`, en: `/en/regions/${slug}` },
     },
   };
 }
 
-export default async function RegionDetail({
-  params,
-}: {
-  params: Promise<{ locale: string; region: string }>;
-}) {
+export default async function RegionDetail({ params }: { params: Promise<{ locale: string; region: string }> }) {
   const { locale: raw, region: slug } = await params;
   if (!['de', 'cz', 'en'].includes(raw)) notFound();
   const locale = normalizeLocale(raw) as Locale;
+  const u = UI[locale] ?? UI.de;
 
   const region = regions.find(r => r.slug === slug);
   if (!region) notFound();
 
+  const name = region.name[locale] ?? region.name.en;
+  const highlights = region.highlights[locale] ?? region.highlights.en;
   const regionJobs = mockJobs.filter(j =>
-    j.location.toLowerCase().includes(region.name.toLowerCase()) ||
-    j.location.toLowerCase().includes(region.nameDe.toLowerCase())
+    j.location.toLowerCase().includes(region.name.en.toLowerCase()) ||
+    j.location.toLowerCase().includes(region.name.de.toLowerCase())
   );
-
   const otherRegions = regions.filter(r => r.slug !== slug).slice(0, 3);
 
   return (
     <SiteShell locale={locale}>
       {/* Hero */}
-      <div
-        style={{
-          background: 'linear-gradient(135deg, var(--at-alpine-green) 0%, #1E4D38 100%)',
-          paddingBlock: 'clamp(48px, 8vw, 80px)',
-        }}
-      >
+      <div style={{ background: 'linear-gradient(135deg, var(--at-alpine-green) 0%, #1E4D38 100%)', paddingBlock: 'clamp(48px, 8vw, 80px)' }}>
         <div className="at-container">
-          <Link
-            href={`/${locale}/regions`}
-            style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.875rem', textDecoration: 'none', display: 'inline-block', marginBottom: 'var(--space-3)' }}
-          >
-            ← All regions
-          </Link>
+          <Link href={`/${locale}/regions`} style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.875rem', textDecoration: 'none', display: 'inline-block', marginBottom: 'var(--space-3)' }}>{u.all}</Link>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 'var(--space-2)' }}>
             <div style={{ color: 'rgba(255,255,255,0.85)', flexShrink: 0 }} aria-hidden="true"><RegionIcon slug={region.slug} size={36} /></div>
-            <h1 className="at-display" style={{ color: '#fff', margin: 0 }}>{region.name}</h1>
+            <h1 className="at-display" style={{ color: '#fff', margin: 0 }}>{name}</h1>
           </div>
-          <p style={{ margin: 0, color: 'rgba(255,255,255,0.8)', fontSize: '1rem' }}>
-            {region.highlights}
-          </p>
+          <p style={{ margin: 0, color: 'rgba(255,255,255,0.8)', fontSize: '1rem' }}>{highlights}</p>
         </div>
       </div>
 
       {/* Content */}
       <div className="at-container" style={{ paddingBlock: 'var(--space-6)' }}>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 'var(--space-6)',
-            alignItems: 'start',
-          }}
-        >
-          {/* About section */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-6)', alignItems: 'start' }}>
           <div>
-            <h2 className="at-h2" style={{ margin: '0 0 var(--space-2)' }}>About {region.name}</h2>
-            <p style={{ margin: '0 0 var(--space-4)', color: 'var(--text-muted)', lineHeight: 1.75 }}>
-              {region.body}
-            </p>
+            <h2 className="at-h2" style={{ margin: '0 0 var(--space-2)' }}>{u.about} {name}</h2>
+            <p style={{ margin: '0 0 var(--space-4)', color: 'var(--text-muted)', lineHeight: 1.75 }}>{region.body[locale] ?? region.body.en}</p>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <span className="at-chip">{region.highlights.split(', ')[0]}</span>
-              <span className="at-chip">{region.highlights.split(', ')[1]}</span>
+              <span className="at-chip">{highlights.split(', ')[0]}</span>
+              <span className="at-chip">{highlights.split(', ')[1]}</span>
             </div>
           </div>
 
-          {/* Jobs in this region */}
           <div>
-            <h2 className="at-h2" style={{ margin: '0 0 var(--space-2)' }}>
-              Open roles in {region.name}
-            </h2>
+            <h2 className="at-h2" style={{ margin: '0 0 var(--space-2)' }}>{u.openRoles} {name}</h2>
             {regionJobs.length > 0 ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-1)' }}>
                 {regionJobs.map(job => (
-                  <JobCard
-                    key={job.slug}
-                    slug={job.slug}
-                    hotelName={job.hotelName}
-                    roleName={job.roleName}
-                    location={job.location}
-                    salary={job.salary}
-                    contractType={job.contractType}
-                    housingProvided={job.housingProvided}
-                    compact
-                    locale={locale}
-                    showSaveHeart
-                  />
+                  <JobCard key={job.slug} slug={job.slug} hotelName={job.hotelName} roleName={job.roleName} location={job.location} salary={job.salary} contractType={job.contractType} housingProvided={job.housingProvided} compact locale={locale} showSaveHeart />
                 ))}
               </div>
             ) : (
               <div className="at-card" style={{ padding: 'var(--space-4)', textAlign: 'center' }}>
-                <p style={{ margin: '0 0 var(--space-2)', color: 'var(--text-muted)' }}>
-                  New roles in {region.name} are added regularly.
-                </p>
-                <Link href={`/${locale}/jobs`} className="at-btn at-btn--primary at-btn--sm">
-                  Browse all jobs →
-                </Link>
+                <p style={{ margin: '0 0 var(--space-2)', color: 'var(--text-muted)' }}>{u.newRoles}</p>
+                <Link href={`/${locale}/jobs`} className="at-btn at-btn--primary at-btn--sm">{u.browse}</Link>
               </div>
             )}
             <div style={{ marginTop: 'var(--space-3)' }}>
-              <Link href={`/${locale}/jobs`} className="at-btn at-btn--secondary at-btn--sm">
-                See all Austria roles →
-              </Link>
+              <Link href={`/${locale}/jobs`} className="at-btn at-btn--secondary at-btn--sm">{u.seeAll}</Link>
             </div>
           </div>
         </div>
 
-        {/* Other regions */}
         <div style={{ marginTop: 'var(--space-8)', paddingTop: 'var(--space-6)', borderTop: '1px solid var(--border)' }}>
-          <h2 className="at-h2" style={{ margin: '0 0 var(--space-3)' }}>Other regions</h2>
+          <h2 className="at-h2" style={{ margin: '0 0 var(--space-3)' }}>{u.other}</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-2)' }}>
             {otherRegions.map(r => (
-              <Link
-                key={r.slug}
-                href={`/${locale}/regions/${r.slug}`}
-                className="at-card at-card--interactive"
-                style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 'var(--space-2)', textDecoration: 'none' }}
-              >
+              <Link key={r.slug} href={`/${locale}/regions/${r.slug}`} className="at-card at-card--interactive" style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 'var(--space-2)', textDecoration: 'none' }}>
                 <div style={{ color: 'var(--at-alpine-green)', flexShrink: 0 }} aria-hidden="true"><RegionIcon slug={r.slug} size={22} /></div>
-                <span style={{ fontWeight: 600, color: 'var(--text)', fontSize: '0.9375rem' }}>{r.name}</span>
+                <span style={{ fontWeight: 600, color: 'var(--text)', fontSize: '0.9375rem' }}>{r.name[locale] ?? r.name.en}</span>
               </Link>
             ))}
           </div>
