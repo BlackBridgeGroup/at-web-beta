@@ -31,7 +31,7 @@ export async function POST(request: Request) {
 
   if (!name) return NextResponse.json({ error: 'missing_name' }, { status: 400 });
   if (!email && !phone) return NextResponse.json({ error: 'missing_contact' }, { status: 400 });
-  if (kind === 'candidate' && !consent) {
+  if (source === 'public_questionnaire' && !consent) {
     return NextResponse.json({ error: 'consent_required' }, { status: 400 });
   }
   if (source === 'contact' && !message) {
