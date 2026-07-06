@@ -24,13 +24,18 @@ export default async function Fragebogen({ params }: { params: Promise<{ locale:
   if (!['de', 'cz', 'en'].includes(raw)) notFound();
   const locale = normalizeLocale(raw);
   const d = getDictionary(locale);
+  const eyebrow = {
+    de: 'Fragebogen',
+    cz: 'Dotazník',
+    en: 'Questionnaire',
+  }[locale];
 
   return (
     <SiteShell locale={locale}>
       <div style={{ paddingBlock: 'clamp(48px, 8vw, 96px)' }}>
         <div className="at-container" style={{ maxWidth: 560 }}>
           <p style={{ margin: '0 0 12px', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--at-alpine-green)' }}>
-            Questionnaire
+            {eyebrow}
           </p>
           <h1 className="at-h1" style={{ margin: '0 0 var(--space-4)' }}>{d.questionnaire.title}</h1>
 

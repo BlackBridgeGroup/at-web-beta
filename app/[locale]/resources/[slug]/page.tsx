@@ -252,10 +252,10 @@ const GUIDES: Guide[] = [
   },
 ];
 
-const UI: Record<string, { back: string; ctaT: string; ctaB: string; ctaBtn: string; more: string; min: (m: number) => string }> = {
-  de: { back: '← AlpenLife Ratgeber', ctaT: 'Bereit, deine Stelle zu finden?', ctaB: 'Durchstöbere Hospitality-Jobs in ganz Österreich — mit wohnbewusstem Matching.', ctaBtn: 'Offene Stellen ansehen →', more: 'Weitere Ratgeber', min: m => `${m} Min. Lesezeit` },
-  cz: { back: '← AlpenLife rádce', ctaT: 'Připraven najít svou roli?', ctaB: 'Procházej pozice v pohostinství po celém Rakousku — s párováním, které řeší i bydlení.', ctaBtn: 'Procházet volné pozice →', more: 'Další články', min: m => `${m} min čtení` },
-  en: { back: '← AlpenLife guide', ctaT: 'Ready to find your role?', ctaB: 'Browse hospitality jobs across Austria — housing-aware matching included.', ctaBtn: 'Browse open roles →', more: 'More guides', min: m => `${m} min read` },
+const UI: Record<string, { back: string; ctaT: string; ctaB: string; ctaBtn: string; more: string; note: string; min: (m: number) => string }> = {
+  de: { back: '← AlpenLife Ratgeber', ctaT: 'Bereit, deine Stelle zu finden?', ctaB: 'Durchstöbere Hospitality-Jobs in ganz Österreich — mit wohnbewusstem Matching.', ctaBtn: 'Offene Stellen ansehen →', more: 'Weitere Ratgeber', note: 'Hinweis: Dieser Ratgeber ersetzt keine Rechts-, Steuer- oder Migrationsberatung. Prüfe aktuelle Regeln vor einer Entscheidung.', min: m => `${m} Min. Lesezeit` },
+  cz: { back: '← AlpenLife rádce', ctaT: 'Připraven najít svou roli?', ctaB: 'Procházej pozice v pohostinství po celém Rakousku — s párováním, které řeší i bydlení.', ctaBtn: 'Procházet volné pozice →', more: 'Další články', note: 'Poznámka: Tento průvodce nenahrazuje právní, daňové ani migrační poradenství. Před rozhodnutím ověř aktuální pravidla.', min: m => `${m} min čtení` },
+  en: { back: '← AlpenLife guide', ctaT: 'Ready to find your role?', ctaB: 'Browse hospitality jobs across Austria — housing-aware matching included.', ctaBtn: 'Browse open roles →', more: 'More guides', note: 'Note: This guide does not replace legal, tax, or immigration advice. Check current rules before making decisions.', min: m => `${m} min read` },
 };
 
 export function generateStaticParams() {
@@ -313,6 +313,7 @@ export default async function ResourceDetail({ params }: { params: Promise<{ loc
             </section>
           ))}
         </article>
+        <p style={{ margin: 'var(--space-3) 0 0', color: 'var(--text-subtle)', fontSize: '0.8125rem', lineHeight: 1.6 }}>{u.note}</p>
 
         {/* CTA */}
         <div className="at-card" style={{ padding: 'var(--space-4)', background: 'color-mix(in srgb, var(--at-alpine-green) 8%, var(--bg-elevated))', border: '1px solid color-mix(in srgb, var(--at-alpine-green) 20%, transparent)', marginTop: 'var(--space-6)', textAlign: 'center' }}>

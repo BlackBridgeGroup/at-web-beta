@@ -31,15 +31,15 @@ type QuestionnaireLabels = {
 
 const messages = {
   de: {
-    success: 'Danke. Die Anfrage ist angekommen. AlpenTalent meldet sich persoenlich.',
+    success: 'Danke. Die Anfrage ist angekommen. AlpenTalent meldet sich persönlich.',
     error: 'Senden fehlgeschlagen. Bitte schreibe uns direkt per WhatsApp.',
     phone: 'Telefon / WhatsApp',
     role: 'Rolle',
     contactValue: 'Kontakt',
   },
   cz: {
-    success: 'Diky. Anfrage dorazila. AlpenTalent se ozve osobne.',
-    error: 'Odeslani se nepodarilo. Napis nam prosim primo na WhatsApp.',
+    success: 'Díky. Zpráva dorazila. AlpenTalent se ozve osobně.',
+    error: 'Odeslání se nepodařilo. Napiš nám prosím přímo na WhatsApp.',
     phone: 'Telefon / WhatsApp',
     role: 'Role',
     contactValue: 'Kontakt',

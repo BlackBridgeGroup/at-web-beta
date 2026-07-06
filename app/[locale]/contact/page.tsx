@@ -20,7 +20,7 @@ const T: Record<string, {
   de: {
     eyebrow: 'Kontakt', h1: 'Sprechen wir.',
     sub: '30 Minuten. Unverbindlich. Ob du Kandidat mit Fragen bist oder ein Hotel, das Personal sucht — wir sind für dich da.',
-    whatsapp: 'Schreib uns auf WhatsApp', reply: 'Wir antworten innerhalb von 24 Stunden, meist viel schneller.', location: 'Wien, Österreich — für alle Regionen.',
+    whatsapp: 'Schreib uns auf WhatsApp', reply: 'Wir melden uns persönlich und so schnell wie möglich.', location: 'Wien, Österreich — für alle Regionen.',
     formTitle: 'Schreib uns', name: 'Name', namePh: 'Dein Name', email: 'E-Mail',
     iam: 'Ich bin…', selectRole: 'Rolle wählen', roleCand: 'Kandidat auf Jobsuche', roleEmp: 'Arbeitgeber / Hotel', rolePartner: 'Partner oder andere',
     message: 'Nachricht', messagePh: 'Wie können wir helfen?', send: 'Nachricht senden', privacy: 'Wir nutzen deine Daten nur, um auf deine Nachricht zu antworten.',
@@ -28,7 +28,7 @@ const T: Record<string, {
   cz: {
     eyebrow: 'Kontakt', h1: 'Pojďme si promluvit.',
     sub: '30 minut. Nezávazně. Ať jsi uchazeč s otázkami, nebo hotel hledající personál — jsme tu pro tebe.',
-    whatsapp: 'Napiš nám na WhatsApp', reply: 'Odpovídáme do 24 hodin, obvykle mnohem dřív.', location: 'Vídeň, Rakousko — pro všechny regiony.',
+    whatsapp: 'Napiš nám na WhatsApp', reply: 'Ozveme se osobně a co nejdříve.', location: 'Vídeň, Rakousko — pro všechny regiony.',
     formTitle: 'Napiš nám', name: 'Jméno', namePh: 'Tvé jméno', email: 'E-mail',
     iam: 'Jsem…', selectRole: 'Vyber roli', roleCand: 'Uchazeč hledající práci', roleEmp: 'Zaměstnavatel / hotel', rolePartner: 'Partner nebo jiné',
     message: 'Zpráva', messagePh: 'Jak můžeme pomoct?', send: 'Odeslat zprávu', privacy: 'Tvé údaje použijeme jen k odpovědi na tvou zprávu.',
@@ -36,7 +36,7 @@ const T: Record<string, {
   en: {
     eyebrow: 'Get in touch', h1: "Let's talk.",
     sub: "30 minutes. No obligation. Whether you're a candidate with questions or a hotel looking for staff — we're here.",
-    whatsapp: 'Message us on WhatsApp', reply: 'We reply within 24 hours, usually much faster.', location: 'Vienna, Austria — serving all regions.',
+    whatsapp: 'Message us on WhatsApp', reply: 'We follow up personally as soon as possible.', location: 'Vienna, Austria — serving all regions.',
     formTitle: 'Send us a message', name: 'Name', namePh: 'Your name', email: 'Email',
     iam: 'I am a…', selectRole: 'Select role', roleCand: 'Candidate looking for work', roleEmp: 'Employer / hotel', rolePartner: 'Partner or other',
     message: 'Message', messagePh: 'How can we help?', send: 'Send message', privacy: 'We only use your details to respond to your message.',

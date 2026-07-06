@@ -127,7 +127,7 @@ export default async function About({ params }: { params: Promise<{ locale: stri
   const stats = [
     { v: 'AT', l: t.statLabels[0], verify: false },
     { v: 'Human', l: t.statLabels[1], verify: false },
-    { v: '3', l: t.statLabels[2], verify: false },
+    { v: 'DE/CZ/EN', l: t.statLabels[2], verify: false },
     { v: t.austriaWide, l: t.statLabels[3], verify: false },
   ];
 

@@ -9,7 +9,7 @@ interface TrustMetric {
 
 const employerMetrics: TrustMetric[] = [
   { value: 'AT', label: 'Hospitality-Fokus' },
-  { value: '48h', label: 'Erste Rueckmeldung' },
+  { value: 'Fast', label: 'persoenliche Rueckmeldung' },
   { value: '0', label: 'Vorauszahlung' },
   { value: 'Human', label: 'gepruefte Matches' },
 ];

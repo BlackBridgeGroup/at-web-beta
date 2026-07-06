@@ -15,6 +15,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
       title: f.colCandidates,
       links: [
         [f.linkFindJobs, '/jobs'],
+        [f.linkConsultation, '/entry-consultation'],
         [f.linkHowItWorks, '/how-it-works'],
         [f.linkSalaryGuide, '/salary-guide'],
         [f.linkRegions, '/regions'],
@@ -153,7 +154,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
             }}
           >
             <p style={{ margin: 0, color: 'var(--text-subtle)', fontSize: '0.8125rem', display: 'flex', alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
-              {f.copyright}
+              {f.copyright.replace(/©\s*\d{4}/, `© ${new Date().getFullYear()}`)}
             </p>
             <div style={{ display: 'flex', gap: 8 }}>
               {[

@@ -11,18 +11,18 @@ export function generateStaticParams() {
 export const metadata: Metadata = { title: 'Austrian Regions' };
 
 const regions = [
-  { slug: 'tyrol', openRoles: 48, name: { de: 'Tirol', cz: 'Tyrolsko', en: 'Tyrol' }, hl: { de: 'Kitzbühel, Innsbruck, St. Anton', cz: 'Kitzbühel, Innsbruck, St. Anton', en: 'Kitzbühel, Innsbruck, St. Anton' } },
-  { slug: 'salzburg', openRoles: 32, name: { de: 'Salzburg', cz: 'Salcbursko', en: 'Salzburg' }, hl: { de: 'Salzburg, Zell am See, Obertauern', cz: 'Salzburg, Zell am See, Obertauern', en: 'Salzburg city, Zell am See, Obertauern' } },
-  { slug: 'vorarlberg', openRoles: 21, name: { de: 'Vorarlberg', cz: 'Vorarlbersko', en: 'Vorarlberg' }, hl: { de: 'Lech, Bregenz, Montafon', cz: 'Lech, Bregenz, Montafon', en: 'Lech, Bregenz, Montafon' } },
-  { slug: 'vienna', openRoles: 19, name: { de: 'Wien', cz: 'Vídeň', en: 'Vienna' }, hl: { de: 'Internationale Hotels, Restaurants', cz: 'Mezinárodní hotely, restaurace', en: 'International hotels, restaurants' } },
-  { slug: 'styria', openRoles: 12, name: { de: 'Steiermark', cz: 'Štýrsko', en: 'Styria' }, hl: { de: 'Graz, Schladming, Bad Aussee', cz: 'Graz, Schladming, Bad Aussee', en: 'Graz, Schladming, Bad Aussee' } },
-  { slug: 'carinthia', openRoles: 9, name: { de: 'Kärnten', cz: 'Korutany', en: 'Carinthia' }, hl: { de: 'Klagenfurt, Velden, Villach', cz: 'Klagenfurt, Velden, Villach', en: 'Klagenfurt, Velden, Villach' } },
+  { slug: 'tyrol', name: { de: 'Tirol', cz: 'Tyrolsko', en: 'Tyrol' }, hl: { de: 'Kitzbühel, Innsbruck, St. Anton', cz: 'Kitzbühel, Innsbruck, St. Anton', en: 'Kitzbühel, Innsbruck, St. Anton' } },
+  { slug: 'salzburg', name: { de: 'Salzburg', cz: 'Salcbursko', en: 'Salzburg' }, hl: { de: 'Salzburg, Zell am See, Obertauern', cz: 'Salzburg, Zell am See, Obertauern', en: 'Salzburg city, Zell am See, Obertauern' } },
+  { slug: 'vorarlberg', name: { de: 'Vorarlberg', cz: 'Vorarlbersko', en: 'Vorarlberg' }, hl: { de: 'Lech, Bregenz, Montafon', cz: 'Lech, Bregenz, Montafon', en: 'Lech, Bregenz, Montafon' } },
+  { slug: 'vienna', name: { de: 'Wien', cz: 'Vídeň', en: 'Vienna' }, hl: { de: 'Internationale Hotels, Restaurants', cz: 'Mezinárodní hotely, restaurace', en: 'International hotels, restaurants' } },
+  { slug: 'styria', name: { de: 'Steiermark', cz: 'Štýrsko', en: 'Styria' }, hl: { de: 'Graz, Schladming, Bad Aussee', cz: 'Graz, Schladming, Bad Aussee', en: 'Graz, Schladming, Bad Aussee' } },
+  { slug: 'carinthia', name: { de: 'Kärnten', cz: 'Korutany', en: 'Carinthia' }, hl: { de: 'Klagenfurt, Velden, Villach', cz: 'Klagenfurt, Velden, Villach', en: 'Klagenfurt, Velden, Villach' } },
 ];
 
-const T: Record<string, { eyebrow: string; h1: string; sub: string; openRoles: string }> = {
-  de: { eyebrow: 'Wo wir arbeiten', h1: 'Regionen Österreichs', sub: 'Von alpinen Skiorten in Tirol bis zu Stadthotels in Wien — wir decken alle wichtigen Hospitality-Regionen ab.', openRoles: 'offene Stellen' },
-  cz: { eyebrow: 'Kde působíme', h1: 'Regiony Rakouska', sub: 'Od alpských lyžařských středisek v Tyrolsku po městské hotely ve Vídni — pokrýváme všechny hlavní regiony pohostinství.', openRoles: 'volných pozic' },
-  en: { eyebrow: 'Where we work', h1: 'Austrian regions', sub: 'From Alpine ski resorts in Tyrol to city hotels in Vienna — we cover all major hospitality regions.', openRoles: 'open roles' },
+const T: Record<string, { eyebrow: string; h1: string; sub: string; badge: string }> = {
+  de: { eyebrow: 'Wo wir arbeiten', h1: 'Regionen Österreichs', sub: 'Von alpinen Skiorten in Tirol bis zu Stadthotels in Wien — wir decken alle wichtigen Hospitality-Regionen ab.', badge: 'Profilbasiertes Matching' },
+  cz: { eyebrow: 'Kde působíme', h1: 'Regiony Rakouska', sub: 'Od alpských lyžařských středisek v Tyrolsku po městské hotely ve Vídni — pokrýváme všechny hlavní regiony pohostinství.', badge: 'Párování podle profilu' },
+  en: { eyebrow: 'Where we work', h1: 'Austrian regions', sub: 'From Alpine ski resorts in Tyrol to city hotels in Vienna — we cover all major hospitality regions.', badge: 'Profile-based matching' },
 };
 
 function RegionIcon({ slug }: { slug: string }) {
@@ -61,7 +61,7 @@ export default async function Regions({ params }: { params: Promise<{ locale: st
                   <div style={{ color: 'var(--at-alpine-green)', flexShrink: 0 }}><RegionIcon slug={r.slug} /></div>
                   <div>
                     <p className="at-h3" style={{ margin: '0 0 2px', color: 'var(--text)' }}>{r.name[locale] ?? r.name.de}</p>
-                    <span className="at-badge at-badge--green">{r.openRoles} {t.openRoles}</span>
+                    <span className="at-badge at-badge--green">{t.badge}</span>
                   </div>
                 </div>
                 <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.8125rem' }}>{r.hl[locale] ?? r.hl.de}</p>

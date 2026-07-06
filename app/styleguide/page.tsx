@@ -165,7 +165,7 @@ export default function Styleguide() {
               <Label>--text-display · Plus Jakarta Sans 800 · 40–56px</Label>
             </div>
             <div>
-              <p className="at-h1" style={{ margin: 0 }}>Kitchen Assistant — Hotel Edelweiss</p>
+              <p className="at-h1" style={{ margin: 0 }}>Kitchen Assistant — Sample Alpine Hotel</p>
               <Label>at-h1 · Plus Jakarta Sans 700 · 28px</Label>
             </div>
             <div>
@@ -184,7 +184,7 @@ export default function Styleguide() {
             </div>
             <div>
               <p style={{ fontFamily: 'var(--font-body)', fontVariantNumeric: 'tabular-nums', fontSize: '1.5rem', fontWeight: 700, color: 'var(--at-alpine-green)', margin: 0 }}>
-                €2,400 / month · 92 · 300+
+                €2,400 / month · 92 · sample
               </p>
               <Label>tabular-nums · use on all numbers</Label>
             </div>
@@ -254,7 +254,7 @@ export default function Styleguide() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16, width: '100%' }}>
             <JobCard
               slug="kitchen-assistant-hotel-edelweiss"
-              hotelName="Hotel Edelweiss"
+              hotelName="Sample Alpine Hotel"
               roleName="Kitchen Assistant"
               location="Kitzbühel, Austria"
               salary="€2,400 / month"
@@ -265,8 +265,8 @@ export default function Styleguide() {
               locale="en"
             />
             <JobCard
-              slug="receptionist-grandhotel"
-              hotelName="Grand Hotel Zell am See"
+              slug="receptionist-sample-hotel"
+              hotelName="Sample Lakeside Hotel"
               roleName="Receptionist"
               location="Zell am See, Austria"
               salary="€2,200 / month"
@@ -278,7 +278,7 @@ export default function Styleguide() {
             />
             <JobCard
               slug="chef-arlberg"
-              hotelName="Arlberg Resort"
+              hotelName="Sample Mountain Resort"
               roleName="Chef de Partie"
               location="St. Anton, Austria"
               salary="€2,800 / month"
@@ -289,8 +289,8 @@ export default function Styleguide() {
           <div style={{ width: '100%', marginTop: 16 }}>
             <p style={{ fontSize: '0.75rem', color: 'var(--text-subtle)', marginBottom: 8 }}>Compact variant:</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 4, maxWidth: 400 }}>
-              <JobCard hotelName="Hotel Edelweiss" roleName="Kitchen Assistant" location="Kitzbühel" salary="€2,400 / month" matchScore={92} compact locale="en" />
-              <JobCard hotelName="Arlberg Resort" roleName="Chef de Partie" location="St. Anton" salary="€2,800 / month" matchScore={75} compact locale="en" />
+              <JobCard hotelName="Sample Alpine Hotel" roleName="Kitchen Assistant" location="Kitzbühel" salary="€2,400 / month" matchScore={92} compact locale="en" />
+              <JobCard hotelName="Sample Mountain Resort" roleName="Chef de Partie" location="St. Anton" salary="€2,800 / month" matchScore={75} compact locale="en" />
             </div>
           </div>
         </Section>
@@ -302,7 +302,7 @@ export default function Styleguide() {
               items={[
                 ['Is AlpenTalent free for candidates?', 'Yes. Candidates never pay. Hotels cover the placement fee — not you.'],
                 ['Do I need to speak German?', 'Not always. Many roles are English-friendly; we match by the level each role actually needs.'],
-                ['How long does it take?', 'Most candidates receive their first matches within 48 hours of completing their profile.'],
+                ['How long does it take?', 'Our team reviews profiles manually and follows up with the next realistic step.'],
               ]}
             />
           </div>

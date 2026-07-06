@@ -341,6 +341,11 @@ img, svg, video { max-width: 100%; }
   .at-btn { min-height: 44px; }
   .at-display { font-size: clamp(1.85rem, 8vw, 2.4rem); line-height: 1.12; }
 }
+/* Bento grids must collapse to one column on narrow screens; reset span-2 tiles */
+@media (max-width: 560px) {
+  .at-bento-ki { grid-template-columns: 1fr !important; }
+  .at-bento-ki > * { grid-column: auto !important; }
+}
 
 /* ─── GuidedQuestionnaire — P0 restyle ─────────────────────────── */
 /* Scoped to .at-q wrapper added in app/candidate/onboarding/page.tsx */

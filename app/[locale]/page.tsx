@@ -262,7 +262,7 @@ export default async function LocaleHome({
             {/* Stats grid */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 'var(--space-2)' }}>
               {[
-                { num: '48h', label: 'Erste Rueckmeldung' },
+                { num: 'Fast', label: 'persoenliche Rueckmeldung' },
                 { num: '100%', label: 'manuell geprueft' },
                 { num: 'Profil', label: 'vor Lebenslauf-Spam' },
                 { num: '0', label: 'Vorauszahlung' },
@@ -285,7 +285,7 @@ export default async function LocaleHome({
       {isEmployer && (
         <section style={{ paddingBlock: 'var(--space-8)', background: 'var(--bg)' }}>
           <div className="at-container">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 'var(--space-2)' }}>
+            <div className="at-bento-ki" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 'var(--space-2)' }}>
               {/* Green highlight tile (span 2) */}
               <div
                 className="at-card"

@@ -38,12 +38,21 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'missing_message' }, { status: 400 });
   }
 
+  const status =
+    kind === 'candidate'
+      ? 'NEW_CANDIDATE_LEAD'
+      : kind === 'employer'
+        ? 'NEW_EMPLOYER_LEAD'
+        : kind === 'partner'
+          ? 'NEW_PARTNER_LEAD'
+          : 'NEW_LEAD';
+
   const admin = createAdminClient();
   const { error } = await admin.from('receptionist_leads').insert({
     kind,
     locale,
     payload,
-    status: kind === 'candidate' ? 'NEW_CANDIDATE_LEAD' : kind === 'employer' ? 'NEW_EMPLOYER_LEAD' : kind === 'partner' ? 'NEW_PARTNER_LEAD' : 'NEW_LEAD',
+    status,
   });
 
   if (error) return NextResponse.json({ error: error.message }, { status: 400 });
@@ -53,7 +62,7 @@ export async function POST(request: Request) {
     await fetch(hook, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ kind, locale, payload }),
+      body: JSON.stringify({ kind, locale, source, status, payload }),
     }).catch(() => null);
   }
 
