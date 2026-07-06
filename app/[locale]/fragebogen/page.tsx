@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { SiteShell } from '../../../components/SiteShell';
+import { QuestionnaireLeadForm } from '../../../components/PublicLeadForm';
 import { getDictionary, locales, normalizeLocale } from '../../../lib/i18n';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -34,32 +35,8 @@ export default async function Fragebogen({ params }: { params: Promise<{ locale:
           <h1 className="at-h1" style={{ margin: '0 0 var(--space-4)' }}>{d.questionnaire.title}</h1>
 
           <div className="at-card" style={{ padding: 'var(--space-4)' }}>
-            <form style={{ display: 'grid', gap: 'var(--space-2)' }}>
-              <input className="at-input" placeholder={d.questionnaire.name} required />
-              <input className="at-input" placeholder={d.questionnaire.role} required />
-              <input className="at-input" placeholder={d.questionnaire.languages} />
-              <input className="at-input" placeholder={d.questionnaire.region} />
-              <input className="at-input" placeholder={d.questionnaire.availability} />
-              <select className="at-input" defaultValue="">
-                <option value="" disabled>{d.questionnaire.contact}</option>
-                <option>WhatsApp</option>
-                <option>Telegram</option>
-                <option>Email</option>
-                <option>Phone</option>
-              </select>
-              <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, cursor: 'pointer', fontSize: '0.875rem', color: 'var(--text-muted)' }}>
-                <input type="checkbox" required style={{ marginTop: 2, flexShrink: 0 }} />
-                {d.questionnaire.consent}
-              </label>
-              <button type="submit" className="at-btn at-btn--primary" style={{ width: '100%', justifyContent: 'center', marginTop: 4 }}>
-                {d.questionnaire.continue}
-              </button>
-            </form>
+            <QuestionnaireLeadForm locale={locale} labels={d.questionnaire} />
           </div>
-
-          <p style={{ marginTop: 'var(--space-2)', color: 'var(--text-subtle)', fontSize: '0.8125rem', textAlign: 'center' }}>
-            Submission is enabled after Supabase configuration.
-          </p>
         </div>
       </div>
     </SiteShell>

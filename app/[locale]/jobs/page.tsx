@@ -1,10 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { SiteShell } from '../../../components/SiteShell';
-import { JobCard } from '../../../components/JobCard';
-import { EmptyState } from '../../../components/EmptyState';
-import { locales, normalizeLocale, getDictionary, type Locale } from '../../../lib/i18n';
-import { mockJobs, type MockJob } from '../../../lib/mockJobs';
+import { locales, normalizeLocale, type Locale } from '../../../lib/i18n';
 
 export const dynamic = 'force-dynamic';
 
@@ -12,139 +9,65 @@ export function generateStaticParams() {
   return locales.map(locale => ({ locale }));
 }
 
-const pageH1: Record<Locale, string> = {
-  en: 'Hospitality jobs in Austria',
-  de: 'Stellen in der Hotellerie in Österreich',
-  cz: 'Pracovní nabídky v hotelnictví v Rakousku',
+const copy: Record<Locale, {
+  h1: string;
+  sub: string;
+  cta: string;
+  note: string;
+  roles: string[];
+}> = {
+  de: {
+    h1: 'Hospitality-Rollen in Österreich',
+    sub: 'AlpenTalent arbeitet nicht wie ein anonymes Jobboard. Wir nehmen dein Profil auf, prüfen Region, Sprache, Erfahrung und Verfügbarkeit und schlagen passende Rollen persönlich vor.',
+    cta: 'Profil senden',
+    note: 'Für Kandidaten kostenlos. Keine Weitergabe deines Profils ohne Zustimmung.',
+    roles: ['Service', 'Küche', 'Housekeeping', 'Rezeption', 'Saisonrollen', 'Ganzjahresstellen'],
+  },
+  cz: {
+    h1: 'Práce v hotelnictví v Rakousku',
+    sub: 'AlpenTalent není anonymní job board. Nejdřív zjistíme tvoje zkušenosti, němčinu, dostupnost a region. Potom tě spojíme jen s rolemi, které dávají smysl.',
+    cta: 'Vyplnit profil',
+    note: 'Pro uchazeče zdarma. Tvůj profil neposíláme zaměstnavateli bez tvého souhlasu.',
+    roles: ['Obsluha', 'Kuchyně', 'Housekeeping', 'Recepce', 'Sezónní práce', 'Celoroční role'],
+  },
+  en: {
+    h1: 'Hospitality roles in Austria',
+    sub: 'AlpenTalent is not an anonymous job board. We collect your profile, review region, language, experience, and availability, then suggest fitting roles personally.',
+    cta: 'Send profile',
+    note: 'Free for candidates. We never share your profile with an employer without your consent.',
+    roles: ['Service', 'Kitchen', 'Housekeeping', 'Reception', 'Seasonal roles', 'Year-round roles'],
+  },
 };
 
-const ROLE_KEYWORDS: Record<string, string[]> = {
-  reception:    ['receptionist', 'reception', 'front desk', 'concierge'],
-  chef:         ['chef', 'cook', 'kitchen', 'culinary', 'pastry', 'sous'],
-  housekeeping: ['housekeep', 'housekeeper', 'room attendant', 'cleaner'],
-  waiter:       ['waiter', 'waitress', 'server', 'service'],
-  manager:      ['manager', 'director', 'supervisor', 'head'],
-};
-
-function matchesRole(job: MockJob, role: string): boolean {
-  if (!role || !ROLE_KEYWORDS[role]) return true;
-  const name = job.roleName.toLowerCase();
-  return ROLE_KEYWORDS[role].some(kw => name.includes(kw));
-}
-
-export default async function JobsPage({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ locale: string }>;
-  searchParams: Promise<{ role?: string }>;
-}) {
+export default async function JobsPage({ params }: { params: Promise<{ locale: string }> }) {
   const raw = (await params).locale;
   if (!['de', 'cz', 'en'].includes(raw)) notFound();
   const locale = normalizeLocale(raw) as Locale;
-  const { role = '' } = await searchParams;
-
-  const d = getDictionary(locale);
-  const j = d.ui.jobs;
-  const p = d.ui.persona;
-
-  const filteredJobs = mockJobs.filter(job => matchesRole(job, role));
-
-  const PERSONA_CHIPS = [
-    { slug: 'reception',    emoji: '🛎️', label: p.reception },
-    { slug: 'chef',         emoji: '👨‍🍳', label: p.chef },
-    { slug: 'housekeeping', emoji: '🛏️', label: p.housekeeping },
-    { slug: 'waiter',       emoji: '🍽️', label: p.waiter },
-    { slug: 'manager',      emoji: '💼', label: p.manager },
-  ];
+  const t = copy[locale] ?? copy.de;
 
   return (
     <SiteShell locale={locale}>
-      {/* Search hero */}
-      <div style={{ background: 'var(--bg-sunken)', borderBottom: '1px solid var(--border)', paddingBlock: 'var(--space-6)' }}>
-        <div className="at-container">
-          <h1 className="at-h1" style={{ margin: '0 0 var(--space-3)' }}>{pageH1[locale]}</h1>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, maxWidth: 720 }}>
-            <input
-              className="at-input"
-              placeholder={j.searchPlaceholder}
-              style={{ flex: '1 1 280px' }}
-              readOnly
-            />
-            <select className="at-input" style={{ flex: '0 0 160px' }} defaultValue="">
-              <option value="">{j.allRegions}</option>
-              <option>Tyrol</option>
-              <option>Salzburg</option>
-              <option>Vorarlberg</option>
-              <option>Vienna</option>
-            </select>
-            <button className="at-btn at-btn--primary">{j.searchBtn}</button>
+      <section style={{ background: 'var(--bg-sunken)', borderBottom: '1px solid var(--border)', paddingBlock: 'clamp(56px, 8vw, 96px)' }}>
+        <div className="at-container" style={{ maxWidth: 760 }}>
+          <p style={{ margin: '0 0 12px', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--at-alpine-green)' }}>
+            AlpenTalent
+          </p>
+          <h1 className="at-h1" style={{ margin: '0 0 var(--space-2)' }}>{t.h1}</h1>
+          <p style={{ margin: '0 0 var(--space-4)', color: 'var(--text-muted)', lineHeight: 1.75, fontSize: '1rem' }}>{t.sub}</p>
+          <Link href={`/${locale}/fragebogen`} className="at-btn at-btn--primary">{t.cta}</Link>
+        </div>
+      </section>
+
+      <section style={{ paddingBlock: 'var(--space-6)' }}>
+        <div className="at-container" style={{ maxWidth: 760 }}>
+          <div className="at-card" style={{ padding: 'var(--space-4)' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 'var(--space-3)' }}>
+              {t.roles.map(role => <span key={role} className="at-chip">{role}</span>)}
+            </div>
+            <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: 1.7 }}>{t.note}</p>
           </div>
         </div>
-      </div>
-
-      {/* Filter chips */}
-      <div style={{ borderBottom: '1px solid var(--border)', paddingBlock: 10 }}>
-        <div className="at-container" style={{ display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center' }}>
-          <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', marginRight: 2 }}>{j.filterLabel}</span>
-          {PERSONA_CHIPS.map(chip => {
-            const active = role === chip.slug;
-            return (
-              <Link
-                key={chip.slug}
-                href={active ? `/${locale}/jobs` : `/${locale}/jobs?role=${chip.slug}`}
-                className="at-chip"
-                style={active ? {
-                  borderColor: 'var(--at-alpine-green)',
-                  color: 'var(--at-alpine-green)',
-                  background: 'var(--at-alpine-light)',
-                  textDecoration: 'none',
-                } : { textDecoration: 'none' }}
-              >
-                <span aria-hidden="true" style={{ marginRight: 5 }}>{chip.emoji}</span>{chip.label}
-              </Link>
-            );
-          })}
-          <span style={{ marginLeft: 'auto', fontSize: '0.8125rem', color: 'var(--text-subtle)' }}>
-            {filteredJobs.length} {locale === 'de' ? 'Stellen' : locale === 'cz' ? 'pozic' : 'roles'}
-          </span>
-        </div>
-      </div>
-
-      {/* Sort + grid */}
-      <div className="at-container" style={{ paddingBlock: 'var(--space-4)' }}>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 'var(--space-2)' }}>
-          <select className="at-input" style={{ width: 'auto' }} defaultValue="best">
-            <option value="best">{j.sortBestMatch}</option>
-            <option value="newest">{j.sortNewest}</option>
-            <option value="salary">{j.sortSalary}</option>
-          </select>
-        </div>
-
-        {filteredJobs.length > 0 ? (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 'var(--space-2)' }}>
-            {filteredJobs.map(job => (
-              <JobCard
-                key={job.slug}
-                slug={job.slug}
-                hotelName={job.hotelName}
-                roleName={job.roleName}
-                location={job.location}
-                salary={job.salary}
-                contractType={job.contractType}
-                housingProvided={job.housingProvided}
-                locale={locale}
-                showSaveHeart
-              />
-            ))}
-          </div>
-        ) : (
-          <EmptyState
-            title={j.noRolesTitle}
-            body={j.noRolesBody}
-          />
-        )}
-      </div>
+      </section>
     </SiteShell>
   );
 }

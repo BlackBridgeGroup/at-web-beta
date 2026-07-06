@@ -250,7 +250,7 @@ export default async function ForEmployers({ params }: { params: Promise<{ local
         <div className="at-container" style={{ maxWidth: 720 }}>
           <p style={{ margin: '0 0 8px', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--at-alpine-green)' }}>{t.faqEyebrow}</p>
           <h2 className="at-h1" style={{ margin: '0 0 var(--space-4)' }}>{t.faqHeading}</h2>
-          <div data-placeholder="verify">
+          <div>
             <Accordion items={t.faq} />
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { SiteShell } from '../../../components/SiteShell';
+import { ContactLeadForm } from '../../../components/PublicLeadForm';
 import { locales, normalizeLocale, type Locale } from '../../../lib/i18n';
 import type { Metadata } from 'next';
 
@@ -47,7 +48,6 @@ export default async function Contact({ params }: { params: Promise<{ locale: st
   if (!['de', 'cz', 'en'].includes(raw)) notFound();
   const locale = normalizeLocale(raw) as Locale;
   const t = T[locale] ?? T.de;
-  const labelStyle = { display: 'block', fontSize: '0.8125rem', fontWeight: 600, marginBottom: 6, color: 'var(--text-muted)' } as const;
 
   return (
     <SiteShell locale={locale}>
@@ -84,31 +84,7 @@ export default async function Contact({ params }: { params: Promise<{ locale: st
             {/* Right: form */}
             <div className="at-card" style={{ padding: 'var(--space-4)' }}>
               <h2 className="at-h3" style={{ margin: '0 0 var(--space-3)' }}>{t.formTitle}</h2>
-              <form style={{ display: 'grid', gap: 'var(--space-2)' }}>
-                <div>
-                  <label style={labelStyle}>{t.name}</label>
-                  <input className="at-input" type="text" placeholder={t.namePh} required />
-                </div>
-                <div>
-                  <label style={labelStyle}>{t.email}</label>
-                  <input className="at-input" type="email" placeholder="your@email.com" required />
-                </div>
-                <div>
-                  <label style={labelStyle}>{t.iam}</label>
-                  <select className="at-input" defaultValue="">
-                    <option value="">{t.selectRole}</option>
-                    <option>{t.roleCand}</option>
-                    <option>{t.roleEmp}</option>
-                    <option>{t.rolePartner}</option>
-                  </select>
-                </div>
-                <div>
-                  <label style={labelStyle}>{t.message}</label>
-                  <textarea className="at-input" placeholder={t.messagePh} rows={4} style={{ resize: 'vertical' }} required />
-                </div>
-                <button type="submit" className="at-btn at-btn--primary" style={{ width: '100%', justifyContent: 'center', marginTop: 4 }}>{t.send}</button>
-                <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-subtle)', textAlign: 'center' }}>{t.privacy}</p>
-              </form>
+              <ContactLeadForm locale={locale} labels={t} />
             </div>
           </div>
         </div>

@@ -104,7 +104,6 @@ export function PriceTier({ name, price, period, note, features, cta, ctaHref, f
 
       <div style={{ marginBottom: 'var(--space-3)' }}>
         <span
-          data-placeholder="verify"
           style={{
             fontFamily: 'var(--font-display)',
             fontWeight: 800,

@@ -333,6 +333,15 @@ a { color: inherit; }
   .at-dashboard-main { padding-bottom: 80px !important; }
 }
 
+/* ── Mobile hardening ─────────────────────────────────────────── */
+html, body { overflow-x: hidden; max-width: 100%; }
+.at-display, .at-h1, .at-h2, .at-h3 { overflow-wrap: break-word; }
+img, svg, video { max-width: 100%; }
+@media (max-width: 480px) {
+  .at-btn { min-height: 44px; }
+  .at-display { font-size: clamp(1.85rem, 8vw, 2.4rem); line-height: 1.12; }
+}
+
 /* ─── GuidedQuestionnaire — P0 restyle ─────────────────────────── */
 /* Scoped to .at-q wrapper added in app/candidate/onboarding/page.tsx */
 .at-q { max-width: 520px; margin-inline: auto; }

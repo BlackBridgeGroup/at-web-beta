@@ -6,7 +6,6 @@ import { Hero } from '../../components/Hero';
 import { TrustBar } from '../../components/TrustBar';
 import { BentoSection } from '../../components/BentoSection';
 import { HowItWorksSection } from '../../components/HowItWorksSection';
-import { JobCard } from '../../components/JobCard';
 import { PricingBlock } from '../../components/PricingBlock';
 import { Accordion } from '../../components/Accordion';
 import { getDictionary, locales, normalizeLocale, type Locale } from '../../lib/i18n';
@@ -48,39 +47,6 @@ export async function generateMetadata({
 export function generateStaticParams() {
   return locales.map(locale => ({ locale }));
 }
-
-const mockJobs = [
-  {
-    slug: 'kitchen-assistant-hotel-edelweiss',
-    hotelName: 'Hotel Edelweiss',
-    roleName: 'Kitchen Assistant',
-    location: 'Kitzbühel, Austria',
-    salary: '€2,400 / month',
-    contractType: 'Full-time',
-    housingProvided: true,
-    matchScore: 92,
-  },
-  {
-    slug: 'receptionist-grandhotel-zell',
-    hotelName: 'Grand Hotel Zell am See',
-    roleName: 'Receptionist',
-    location: 'Zell am See, Austria',
-    salary: '€2,200 / month',
-    contractType: 'Full-time',
-    housingProvided: true,
-    matchScore: 87,
-  },
-  {
-    slug: 'chef-de-partie-arlberg',
-    hotelName: 'Arlberg Resort',
-    roleName: 'Chef de Partie',
-    location: 'St. Anton am Arlberg, Austria',
-    salary: '€2,800 / month',
-    contractType: 'Full-time',
-    housingProvided: false,
-    matchScore: 74,
-  },
-];
 
 const deWhyIcons = [
   <svg key="ai" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>,
@@ -163,36 +129,6 @@ function buildOrgSchema() {
   };
 }
 
-function buildJobPostingsSchema() {
-  return mockJobs.map(job => ({
-    '@context': 'https://schema.org',
-    '@type': 'JobPosting',
-    title: job.roleName,
-    hiringOrganization: { '@type': 'Organization', name: job.hotelName },
-    jobLocation: {
-      '@type': 'Place',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: job.location.split(',')[0],
-        addressCountry: 'AT',
-      },
-    },
-    baseSalary: {
-      '@type': 'MonetaryAmount',
-      currency: 'EUR',
-      value: {
-        '@type': 'QuantitativeValue',
-        value: parseInt(job.salary.replace(/\D/g, ''), 10),
-        unitText: 'MONTH',
-      },
-    },
-    employmentType: 'FULL_TIME',
-    datePosted: '2026-01-01',
-    validThrough: '2026-12-31',
-    jobBenefits: job.housingProvided ? 'Staff accommodation provided' : undefined,
-  }));
-}
-
 function buildFaqSchema(items: [string, string][]) {
   return {
     '@context': 'https://schema.org',
@@ -241,7 +177,6 @@ export default async function LocaleHome({
 
   const schemas = [
     buildOrgSchema(),
-    ...(isCandidate ? buildJobPostingsSchema() : []),
     ...(isCandidate ? [buildFaqSchema(hp.faq.items)] : []),
     buildBreadcrumbSchema(locale, breadcrumbName),
   ];
@@ -327,15 +262,14 @@ export default async function LocaleHome({
             {/* Stats grid */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 'var(--space-2)' }}>
               {[
-                { num: '6–12', label: 'Wochen Suche im Schnitt', verify: true },
-                { num: '40%', label: 'Absprungquote herkömmlich', verify: true },
-                { num: '5–10', label: 'Werktage mit AlpenTalent' },
+                { num: '48h', label: 'Erste Rueckmeldung' },
+                { num: '100%', label: 'manuell geprueft' },
+                { num: 'Profil', label: 'vor Lebenslauf-Spam' },
                 { num: '0', label: 'Vorauszahlung' },
               ].map(s => (
                 <div key={s.label} className="at-card" style={{ padding: 'var(--space-3)', textAlign: 'center' }}>
                   <p
                     style={{ margin: '0 0 4px', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '1.75rem', color: 'var(--at-alpine-green)', fontVariantNumeric: 'tabular-nums', lineHeight: 1 }}
-                    {...(s.verify ? { 'data-placeholder': 'verify' } : {})}
                   >
                     {s.num}
                   </p>
@@ -367,21 +301,21 @@ export default async function LocaleHome({
                   Unser Algorithmus gleicht Qualifikationen, Sprache und Region ab — und unsere Recruiter prüfen jeden Match manuell nach. Keine Massen-CVs.
                 </p>
               </div>
-              {/* Stat: −40% */}
+              {/* Fit check */}
               <div className="at-card" style={{ padding: 'var(--space-4)', textAlign: 'center' }}>
-                <p style={{ margin: '0 0 6px', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '2.5rem', color: 'var(--at-alpine-green)', lineHeight: 1 }} data-placeholder="verify">
-                  −40%
+                <p style={{ margin: '0 0 6px', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '2.5rem', color: 'var(--at-alpine-green)', lineHeight: 1 }}>
+                  Fit
                 </p>
-                <p style={{ margin: 0, fontWeight: 600, fontSize: '0.9375rem', color: 'var(--text)' }}>Weniger Absprünge</p>
-                <p style={{ margin: '2px 0 0', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>vs. klassisches Recruiting</p>
+                <p style={{ margin: 0, fontWeight: 600, fontSize: '0.9375rem', color: 'var(--text)' }}>Vor jeder Vorstellung</p>
+                <p style={{ margin: '2px 0 0', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>Profil, Region, Sprache, Startdatum</p>
               </div>
-              {/* Stat: 3× */}
+              {/* Consent check */}
               <div className="at-card" style={{ padding: 'var(--space-4)', textAlign: 'center' }}>
-                <p style={{ margin: '0 0 6px', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '2.5rem', color: 'var(--at-alpine-green)', lineHeight: 1 }} data-placeholder="verify">
-                  3×
+                <p style={{ margin: '0 0 6px', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '2.5rem', color: 'var(--at-alpine-green)', lineHeight: 1 }}>
+                  OK
                 </p>
-                <p style={{ margin: 0, fontWeight: 600, fontSize: '0.9375rem', color: 'var(--text)' }}>Schnellere Besetzung</p>
-                <p style={{ margin: '2px 0 0', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>vs. herkömmliche Jobportale</p>
+                <p style={{ margin: 0, fontWeight: 600, fontSize: '0.9375rem', color: 'var(--text)' }}>Kein Auto-Forward</p>
+                <p style={{ margin: '2px 0 0', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>Kandidaten werden vorab abgestimmt</p>
               </div>
               {/* Photo tile */}
               <div
@@ -526,7 +460,7 @@ export default async function LocaleHome({
         </section>
       )}
 
-      {/* 6. Featured jobs (candidate locales only) */}
+      {/* 6. Candidate intake (candidate locales only) */}
       {isCandidate && (
         <section style={{ paddingBlock: 'var(--space-8)' }}>
           <div className="at-container">
@@ -540,21 +474,25 @@ export default async function LocaleHome({
                 flexWrap: 'wrap',
               }}
             >
-              <h2 className="at-h1" style={{ margin: 0 }}>{hp.jobs.heading}</h2>
-              <Link href={`/${locale}/jobs`} className="at-btn at-btn--ghost at-btn--sm">
-                {hp.jobs.browseAll}
+              <h2 className="at-h1" style={{ margin: 0 }}>
+                {locale === 'cz' ? 'Pošli profil, role vybereme osobně.' : 'Send your profile. We match roles personally.'}
+              </h2>
+              <Link href={`/${locale}/fragebogen`} className="at-btn at-btn--primary at-btn--sm">
+                {locale === 'cz' ? 'Vyplnit dotazník' : 'Complete questionnaire'}
               </Link>
             </div>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                gap: 'var(--space-2)',
-              }}
-            >
-              {mockJobs.map(job => (
-                <JobCard key={job.slug} {...job} locale={locale} showSaveHeart />
-              ))}
+            <div className="at-card" style={{ padding: 'var(--space-4)', display: 'grid', gap: 'var(--space-2)' }}>
+              <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: 1.7 }}>
+                {locale === 'cz'
+                  ? 'Aktuální nabídky neukazujeme jako anonymní seznam. Nejdřív ověříme tvoje zkušenosti, němčinu, dostupnost a region. Pak tě spojíme jen s rolemi, které dávají smysl.'
+                  : 'We do not publish anonymous roles as a generic job board. First we review your experience, language level, availability, and region. Then we connect you only with roles that make sense.'}
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                <span className="at-chip">Service</span>
+                <span className="at-chip">Kitchen</span>
+                <span className="at-chip">Housekeeping</span>
+                <span className="at-chip">Reception</span>
+              </div>
             </div>
           </div>
         </section>

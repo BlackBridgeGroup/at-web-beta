@@ -51,7 +51,7 @@ const T: Record<string, Content> = {
     missionB: 'Österreichs Hotellerie braucht qualifizierte Menschen. Fachkräfte aus Mitteleuropa wollen gute Arbeit in einem stabilen Land. AlpenTalent schließt diese Lücke — mit Ehrlichkeit, Tempo und Respekt für alle Beteiligten.',
     howT: 'Wie wir arbeiten',
     howB: 'Die KI übernimmt Matching und Vorauswahl im großen Maßstab. Menschen übernehmen die Gespräche, die zählen — Interviewvorbereitung, Wohnfragen, Anliegen der Kandidaten, Beziehungen zu Arbeitgebern. Fürsorge automatisieren wir nie.',
-    statLabels: ['Partnerhotels', 'Fachkräfte', 'Bewertung', 'Alle Regionen'],
+    statLabels: ['Fokus', 'Matching', 'Support', 'Alle Regionen'],
     austriaWide: 'Österreichweit',
     believe: 'Woran wir glauben',
     values: [
@@ -72,7 +72,7 @@ const T: Record<string, Content> = {
     missionB: 'Rakouské pohostinství potřebuje šikovné lidi. Profesionálové ze střední Evropy chtějí kvalitní práci ve stabilní zemi. AlpenTalent tuhle mezeru propojuje — s poctivostí, rychlostí a respektem ke všem.',
     howT: 'Jak pracujeme',
     howB: 'AI zvládá párování a předvýběr ve velkém. Lidé řeší rozhovory, na kterých záleží — přípravu na pohovor, otázky bydlení, starosti kandidátů, vztahy se zaměstnavateli. Péči nikdy neautomatizujeme.',
-    statLabels: ['partnerských hotelů', 'profesionálů', 'spokojenost', 'Všechny regiony'],
+    statLabels: ['fokus', 'matching', 'podpora', 'Všechny regiony'],
     austriaWide: 'Celé Rakousko',
     believe: 'Čemu věříme',
     values: [
@@ -93,7 +93,7 @@ const T: Record<string, Content> = {
     missionB: "Austria's hospitality industry needs skilled people. Central European professionals want quality work in a stable country. AlpenTalent bridges this gap — with honesty, speed, and respect for everyone involved.",
     howT: 'How we work',
     howB: 'AI handles matching and screening at scale. Humans handle the conversations that matter — interview prep, housing questions, candidate concerns, employer relationships. We never automate care.',
-    statLabels: ['Partner hotels', 'Hospitality professionals', 'Candidate satisfaction', 'All major regions'],
+    statLabels: ['Focus', 'Matching', 'Support', 'All major regions'],
     austriaWide: 'Austria-wide',
     believe: 'What we believe',
     values: [
@@ -125,9 +125,9 @@ export default async function About({ params }: { params: Promise<{ locale: stri
   const t = T[locale] ?? T.de;
 
   const stats = [
-    { v: '300+', l: t.statLabels[0], verify: true },
-    { v: '10,000+', l: t.statLabels[1], verify: true },
-    { v: '4.9★', l: t.statLabels[2], verify: true },
+    { v: 'AT', l: t.statLabels[0], verify: false },
+    { v: 'Human', l: t.statLabels[1], verify: false },
+    { v: '3', l: t.statLabels[2], verify: false },
     { v: t.austriaWide, l: t.statLabels[3], verify: false },
   ];
 

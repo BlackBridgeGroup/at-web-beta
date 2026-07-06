@@ -8,10 +8,10 @@ interface TrustMetric {
 }
 
 const employerMetrics: TrustMetric[] = [
-  { value: '300+', label: 'Partnerbetriebe', verify: true },
-  { value: '5–10', label: 'Werktage Lieferzeit' },
+  { value: 'AT', label: 'Hospitality-Fokus' },
+  { value: '48h', label: 'Erste Rueckmeldung' },
   { value: '0', label: 'Vorauszahlung' },
-  { value: 'KI', label: 'gestütztes Matching' },
+  { value: 'Human', label: 'gepruefte Matches' },
 ];
 
 interface TrustBarProps {
@@ -25,10 +25,10 @@ export function TrustBar({ variant = 'candidate', metrics, locale = 'de' }: Trus
   const t = d.ui.trust;
 
   const candidateMetrics: TrustMetric[] = [
-    { value: '300+', label: t.partnerHotels, verify: true },
-    { value: '10,000+', label: t.hospitality, verify: true },
+    { value: '0 EUR', label: locale === 'cz' ? 'pro uchazece' : 'for candidates' },
+    { value: 'AT', label: locale === 'cz' ? 'rakouske role' : 'Austria roles' },
     { value: t.coverage, label: '' },
-    { value: '4.9', label: t.satisfaction, verify: true, starAfter: true },
+    { value: 'Human', label: locale === 'cz' ? 'rucni kontrola' : 'reviewed matching' },
   ];
 
   const items = metrics ?? (variant === 'employer' ? employerMetrics : candidateMetrics);

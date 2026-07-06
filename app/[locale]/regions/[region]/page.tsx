@@ -1,9 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SiteShell } from '../../../../components/SiteShell';
-import { JobCard } from '../../../../components/JobCard';
 import { locales, normalizeLocale, type Locale } from '../../../../lib/i18n';
-import { mockJobs } from '../../../../lib/mockJobs';
 import type { Metadata } from 'next';
 
 type LS = Record<string, string>;
@@ -73,9 +71,9 @@ const regions: Region[] = [
 ];
 
 const UI: Record<string, { all: string; about: string; openRoles: string; newRoles: string; browse: string; seeAll: string; other: string }> = {
-  de: { all: '← Alle Regionen', about: 'Über', openRoles: 'Offene Stellen in', newRoles: 'Neue Stellen kommen hier regelmäßig dazu.', browse: 'Alle Stellen ansehen →', seeAll: 'Alle Stellen in Österreich →', other: 'Andere Regionen' },
-  cz: { all: '← Všechny regiony', about: 'O regionu', openRoles: 'Volné pozice v', newRoles: 'Nové pozice tu přibývají pravidelně.', browse: 'Procházet všechny pozice →', seeAll: 'Všechny pozice v Rakousku →', other: 'Další regiony' },
-  en: { all: '← All regions', about: 'About', openRoles: 'Open roles in', newRoles: 'New roles here are added regularly.', browse: 'Browse all jobs →', seeAll: 'See all Austria roles →', other: 'Other regions' },
+  de: { all: '← Alle Regionen', about: 'Über', openRoles: 'Rollen in', newRoles: 'Wir matchen Rollen in dieser Region nach Profil und Verfügbarkeit.', browse: 'Profil senden →', seeAll: 'Profil für Österreich senden →', other: 'Andere Regionen' },
+  cz: { all: '← Všechny regiony', about: 'O regionu', openRoles: 'Role v regionu', newRoles: 'Role v tomto regionu párujeme podle profilu a dostupnosti.', browse: 'Vyplnit profil →', seeAll: 'Vyplnit profil pro Rakousko →', other: 'Další regiony' },
+  en: { all: '← All regions', about: 'About', openRoles: 'Roles in', newRoles: 'We match roles in this region based on profile and availability.', browse: 'Send profile →', seeAll: 'Send Austria profile →', other: 'Other regions' },
 };
 
 function RegionIcon({ slug, size = 24 }: { slug: string; size?: number }) {
@@ -122,10 +120,6 @@ export default async function RegionDetail({ params }: { params: Promise<{ local
 
   const name = region.name[locale] ?? region.name.en;
   const highlights = region.highlights[locale] ?? region.highlights.en;
-  const regionJobs = mockJobs.filter(j =>
-    j.location.toLowerCase().includes(region.name.en.toLowerCase()) ||
-    j.location.toLowerCase().includes(region.name.de.toLowerCase())
-  );
   const otherRegions = regions.filter(r => r.slug !== slug).slice(0, 3);
 
   return (
@@ -156,20 +150,12 @@ export default async function RegionDetail({ params }: { params: Promise<{ local
 
           <div>
             <h2 className="at-h2" style={{ margin: '0 0 var(--space-2)' }}>{u.openRoles} {name}</h2>
-            {regionJobs.length > 0 ? (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-1)' }}>
-                {regionJobs.map(job => (
-                  <JobCard key={job.slug} slug={job.slug} hotelName={job.hotelName} roleName={job.roleName} location={job.location} salary={job.salary} contractType={job.contractType} housingProvided={job.housingProvided} compact locale={locale} showSaveHeart />
-                ))}
-              </div>
-            ) : (
-              <div className="at-card" style={{ padding: 'var(--space-4)', textAlign: 'center' }}>
-                <p style={{ margin: '0 0 var(--space-2)', color: 'var(--text-muted)' }}>{u.newRoles}</p>
-                <Link href={`/${locale}/jobs`} className="at-btn at-btn--primary at-btn--sm">{u.browse}</Link>
-              </div>
-            )}
+            <div className="at-card" style={{ padding: 'var(--space-4)', textAlign: 'center' }}>
+              <p style={{ margin: '0 0 var(--space-2)', color: 'var(--text-muted)' }}>{u.newRoles}</p>
+              <Link href={`/${locale}/fragebogen`} className="at-btn at-btn--primary at-btn--sm">{u.browse}</Link>
+            </div>
             <div style={{ marginTop: 'var(--space-3)' }}>
-              <Link href={`/${locale}/jobs`} className="at-btn at-btn--secondary at-btn--sm">{u.seeAll}</Link>
+              <Link href={`/${locale}/fragebogen`} className="at-btn at-btn--secondary at-btn--sm">{u.seeAll}</Link>
             </div>
           </div>
         </div>
