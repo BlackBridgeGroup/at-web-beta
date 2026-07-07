@@ -217,9 +217,9 @@ export default async function LocaleHome({
       {/* 2b. Audience signpost */}
       {(() => {
         const R: Record<string, { cand: [string, string, string]; emp: [string, string, string] }> = {
-          de: { cand: ['Ich suche Arbeit', 'Karriere in der DACH-Hotellerie — Beratung, Kandidatenpool und offene Rollen.', 'Für Kandidaten'], emp: ['Ich suche Personal', 'Vorgeprüfte, sprachlich passende Fachkräfte für dein Hotel oder Restaurant.', 'Für Arbeitgeber'] },
-          cz: { cand: ['Hledám práci', 'Kariéra v hotelnictví v regionu DACH — konzultace, pool a otevřené pozice.', 'Pro uchazeče'], emp: ['Hledám personál', 'Prověření, jazykově vhodní pracovníci pro váš hotel nebo restauraci.', 'Pro zaměstnavatele'] },
-          en: { cand: ['I’m looking for work', 'A career in DACH hospitality — consultation, candidate pool, and open roles.', 'For Candidates'], emp: ['I’m hiring', 'Pre-screened, language-matched talent for your hotel or restaurant.', 'For Employers'] },
+          de: { cand: ['Ich suche Arbeit', 'Kostenlos registrieren, offene Rollen ansehen, in den Kandidatenpool — die Gebühr zahlt der Arbeitgeber.', 'Für Kandidaten'], emp: ['Ich suche Personal', 'Vorgeprüfte, sprachlich passende Fachkräfte für dein Hotel oder Restaurant.', 'Für Arbeitgeber'] },
+          cz: { cand: ['Hledám práci', 'Registrace zdarma, otevřené pozice a kandidátský pool — poplatek platí zaměstnavatel.', 'Pro uchazeče'], emp: ['Hledám personál', 'Prověření, jazykově vhodní pracovníci pro váš hotel nebo restauraci.', 'Pro zaměstnavatele'] },
+          en: { cand: ['I’m looking for work', 'Free registration, open roles, and the candidate pool — the fee is paid by the employer.', 'For Candidates'], emp: ['I’m hiring', 'Pre-screened, language-matched talent for your hotel or restaurant.', 'For Employers'] },
         };
         const r = R[locale] ?? R.de;
         const cards: { d: [string, string, string]; href: string }[] = [

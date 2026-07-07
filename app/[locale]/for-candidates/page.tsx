@@ -18,9 +18,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     cz: 'Pro uchazeče — kariéra v hotelnictví v regionu DACH | AlpenTalent',
   };
   const descriptions: Record<Locale, string> = {
-    en: 'Work in Austria and across the DACH region. Career consultation, candidate pool, hospitality jobs, and honest guidance for EU and international professionals.',
-    de: 'Arbeite in Österreich und in der DACH-Region. Karriereberatung, Kandidatenpool, Hospitality-Jobs und ehrliche Begleitung für EU- und internationale Fachkräfte.',
-    cz: 'Pracuj v Rakousku a v regionu DACH. Kariérní konzultace, kandidátský pool, pozice v hotelnictví a upřímné vedení pro pracovníky z EU i mezinárodně.',
+    en: 'Work in Austria. Free registration, free knowledge hub, hospitality jobs and salary guides. Recruitment is free for candidates — employers pay the fee.',
+    de: 'Arbeite in Österreich. Kostenlose Registrierung, kostenloser Wissens-Hub, Hospitality-Jobs und Gehaltsguides. Die Vermittlung ist für Kandidaten kostenlos — die Gebühr zahlt der Arbeitgeber.',
+    cz: 'Pracuj v Rakousku. Registrace zdarma, znalostní hub zdarma, pozice v hotelnictví a průvodce platy. Zprostředkování je pro uchazeče zdarma — poplatek platí zaměstnavatel.',
   };
   return {
     title: titles[locale],
@@ -38,56 +38,60 @@ type Content = {
   cardsEyebrow: string;
   cards: Card[];
   ctaT: string; ctaB: string; ctaBook: string; ctaJobs: string;
+  disclaimer: string;
 };
 
 const T: Record<string, Content> = {
   de: {
     eyebrow: 'Für Kandidat:innen',
-    h1: 'Bau deine Hospitality-Karriere in der DACH-Region.',
-    sub: 'Wir helfen Fachkräften aus der EU und international, in Österreich zu arbeiten — mit Blick auf Deutschland und die Schweiz. Ehrliche Beratung, echte Rollen, menschliche Begleitung.',
-    cardsEyebrow: 'Wie wir dir helfen',
+    h1: 'Deine Hospitality-Karriere in Österreich — kostenlos.',
+    sub: 'Registrierung kostenlos. Infos kostenlos. Vermittlung kostenlos — die Gebühr zahlt der Arbeitgeber, niemals du. Wir verbinden Fachkräfte aus der EU und international mit Hotels und Restaurants in Österreich.',
+    cardsEyebrow: 'Alles kostenlos für dich',
     cards: [
-      { title: 'In Österreich arbeiten', body: 'Hotels und Restaurants in ganz Österreich — mit Perspektive auf Deutschland und die Schweiz.', href: '/jobs', cta: 'Offene Rollen ansehen' },
-      { title: 'Career Consultation', body: 'Für Fachkräfte von außerhalb der EU (€100): Assessment, Dokumentenprüfung, Marktorientierung, Aktionsplan. EU-Bürger:innen brauchen sie nicht.', href: '/career-consultation', cta: 'Mehr erfahren' },
-      { title: 'Kandidatenpool', body: 'Ist dein Profil in unserem Pool, matchen wir dich mit passenden offenen Rollen — nur mit deiner Zustimmung.', href: '/career-consultation', cta: 'So kommst du rein' },
-      { title: 'Hospitality-Jobs', body: 'Rezeption, Küche, Service, Housekeeping, Management — Rollen für jede Erfahrungsstufe.', href: '/jobs', cta: 'Jobs durchsuchen' },
-      { title: 'Karriere-Orientierung', body: 'Gehälter, Regionen, Saison, Umzug — praktische Guides, damit du weißt, was dich erwartet.', href: '/resources', cta: 'Ratgeber lesen' },
+      { title: 'Kostenlos registrieren', body: 'Profil anlegen, Lebenslauf hochladen, in unsere Kandidatendatenbank aufgenommen werden. Freiwillig und jederzeit widerrufbar.', href: '/fragebogen', cta: 'Jetzt registrieren' },
+      { title: 'Offene Rollen', body: 'Rezeption, Küche, Service, Housekeeping, Management — in ganz Österreich, für jede Erfahrungsstufe.', href: '/jobs', cta: 'Rollen ansehen' },
+      { title: 'Wissens-Hub', body: 'Arbeiten in Österreich, Bewerbungstipps, Unterkunft, Dokumente — allgemeine, kostenlose Infos für alle.', href: '/resources', cta: 'Ratgeber lesen' },
       { title: 'Gehaltsguide', body: 'Reale Gehaltsspannen für Hospitality-Rollen in Österreich, ehrlich und aktuell.', href: '/salary-guide', cta: 'Gehälter ansehen' },
+      { title: 'Regionen', body: 'Tirol, Salzburg, Wien und mehr — wo in Österreich gearbeitet wird und was dich erwartet.', href: '/regions', cta: 'Regionen entdecken' },
+      { title: 'Häufige Fragen', body: 'Wie der Ablauf funktioniert, was kostenlos ist und wie die Vermittlung läuft.', href: '/faq', cta: 'FAQ öffnen' },
     ],
-    ctaT: 'Bereit anzufangen?', ctaB: 'Buche eine Beratung oder schau dir zuerst die offenen Rollen an.',
-    ctaBook: 'Beratung buchen', ctaJobs: 'Rollen ansehen',
+    ctaT: 'Bereit anzufangen?', ctaB: 'Registriere dich kostenlos oder schau dir zuerst die offenen Rollen an.',
+    ctaBook: 'Kostenlos registrieren', ctaJobs: 'Rollen ansehen',
+    disclaimer: 'Alle Informationen auf dieser Website sind allgemeiner Natur und stellen keine Rechts-, Aufenthalts- oder Immigrationsberatung dar. Für rechtsverbindliche Auskünfte wende dich an eine:n Rechtsanwält:in oder die zuständige Behörde.',
   },
   cz: {
     eyebrow: 'Pro uchazeče',
-    h1: 'Vybuduj si kariéru v hotelnictví v regionu DACH.',
-    sub: 'Pomáháme pracovníkům z EU i mezinárodně pracovat v Rakousku — s výhledem na Německo a Švýcarsko. Upřímné poradenství, reálné pozice, lidský přístup.',
-    cardsEyebrow: 'Jak ti pomůžeme',
+    h1: 'Tvoje kariéra v hotelnictví v Rakousku — zdarma.',
+    sub: 'Registrace zdarma. Informace zdarma. Zprostředkování zdarma — poplatek platí zaměstnavatel, nikdy ty. Spojujeme pracovníky z EU i mezinárodně s hotely a restauracemi v Rakousku.',
+    cardsEyebrow: 'Vše pro tebe zdarma',
     cards: [
-      { title: 'Práce v Rakousku', body: 'Hotely a restaurace po celém Rakousku — s perspektivou Německa a Švýcarska.', href: '/jobs', cta: 'Zobrazit pozice' },
-      { title: 'Kariérní konzultace', body: 'Pro pracovníky mimo EU (€100): posouzení, revize dokumentů, orientace na trhu, akční plán. Občané EU ji nepotřebují.', href: '/career-consultation', cta: 'Zjistit více' },
-      { title: 'Kandidátský pool', body: 'Když je tvůj profil v poolu, spárujeme tě s vhodnými otevřenými pozicemi — jen s tvým souhlasem.', href: '/career-consultation', cta: 'Jak se dostat dovnitř' },
-      { title: 'Pozice v hotelnictví', body: 'Recepce, kuchyně, obsluha, úklid, management — role pro každou úroveň praxe.', href: '/jobs', cta: 'Procházet pozice' },
-      { title: 'Kariérní orientace', body: 'Platy, regiony, sezóna, přesun — praktické průvodce, ať víš, co tě čeká.', href: '/resources', cta: 'Číst rádce' },
+      { title: 'Registrace zdarma', body: 'Vytvoř profil, nahraj životopis, zařaď se do naší kandidátské databáze. Dobrovolně a kdykoli odvolatelné.', href: '/fragebogen', cta: 'Registrovat se' },
+      { title: 'Otevřené pozice', body: 'Recepce, kuchyně, obsluha, úklid, management — po celém Rakousku, pro každou úroveň praxe.', href: '/jobs', cta: 'Zobrazit pozice' },
+      { title: 'Znalostní hub', body: 'Práce v Rakousku, tipy na přihlášku, ubytování, dokumenty — obecné, bezplatné informace pro všechny.', href: '/resources', cta: 'Číst rádce' },
       { title: 'Průvodce platy', body: 'Reálná platová rozpětí pro pozice v hotelnictví v Rakousku, upřímně a aktuálně.', href: '/salary-guide', cta: 'Zobrazit platy' },
+      { title: 'Regiony', body: 'Tyrolsko, Salcbursko, Vídeň a další — kde se v Rakousku pracuje a co tě čeká.', href: '/regions', cta: 'Objevit regiony' },
+      { title: 'Časté dotazy', body: 'Jak probíhá proces, co je zdarma a jak funguje zprostředkování.', href: '/faq', cta: 'Otevřít FAQ' },
     ],
-    ctaT: 'Připraven začít?', ctaB: 'Rezervuj si konzultaci nebo se nejdřív podívej na otevřené pozice.',
-    ctaBook: 'Rezervovat konzultaci', ctaJobs: 'Zobrazit pozice',
+    ctaT: 'Připraven začít?', ctaB: 'Zaregistruj se zdarma nebo se nejdřív podívej na otevřené pozice.',
+    ctaBook: 'Registrovat se zdarma', ctaJobs: 'Zobrazit pozice',
+    disclaimer: 'Veškeré informace na tomto webu jsou obecné povahy a nepředstavují právní, pobytové ani imigrační poradenství. Pro právně závazné informace se obrať na advokáta nebo příslušný úřad.',
   },
   en: {
     eyebrow: 'For candidates',
-    h1: 'Build a hospitality career across the DACH region.',
-    sub: 'We help EU and international professionals work in Austria — with an eye on Germany and Switzerland. Honest guidance, real roles, human support.',
-    cardsEyebrow: 'How we help you',
+    h1: 'Your hospitality career in Austria — free.',
+    sub: 'Free registration. Free information. Free recruitment — the fee is paid by the employer, never by you. We connect EU and international professionals with hotels and restaurants in Austria.',
+    cardsEyebrow: 'Everything free for you',
     cards: [
-      { title: 'Work in Austria', body: 'Hotels and restaurants across Austria — with a path toward Germany and Switzerland.', href: '/jobs', cta: 'See open roles' },
-      { title: 'Career Consultation', body: 'For professionals from outside the EU (€100): assessment, document review, market orientation, action plan. EU citizens don’t need it.', href: '/career-consultation', cta: 'Learn more' },
-      { title: 'Candidate pool', body: 'Once your profile is in our pool, we match you with suitable open roles — only with your consent.', href: '/career-consultation', cta: 'How to join' },
-      { title: 'Hospitality jobs', body: 'Reception, kitchen, service, housekeeping, management — roles for every experience level.', href: '/jobs', cta: 'Browse jobs' },
-      { title: 'Career guidance', body: 'Salaries, regions, seasons, relocation — practical guides so you know what to expect.', href: '/resources', cta: 'Read the guides' },
+      { title: 'Register for free', body: 'Create a profile, upload your CV, join our candidate database. Voluntary and revocable at any time.', href: '/fragebogen', cta: 'Register now' },
+      { title: 'Open roles', body: 'Reception, kitchen, service, housekeeping, management — across Austria, for every experience level.', href: '/jobs', cta: 'See roles' },
+      { title: 'Knowledge Hub', body: 'Working in Austria, application tips, accommodation, documents — general, free information for everyone.', href: '/resources', cta: 'Read the guides' },
       { title: 'Salary guide', body: 'Real salary ranges for hospitality roles in Austria — honest and current.', href: '/salary-guide', cta: 'See salaries' },
+      { title: 'Regions', body: 'Tyrol, Salzburg, Vienna and more — where the work is in Austria and what to expect.', href: '/regions', cta: 'Explore regions' },
+      { title: 'FAQ', body: 'How the process works, what is free, and how recruitment happens.', href: '/faq', cta: 'Open FAQ' },
     ],
-    ctaT: 'Ready to start?', ctaB: 'Book a consultation or browse the open roles first.',
-    ctaBook: 'Book a consultation', ctaJobs: 'See roles',
+    ctaT: 'Ready to start?', ctaB: 'Register for free or browse the open roles first.',
+    ctaBook: 'Register for free', ctaJobs: 'See roles',
+    disclaimer: 'All information on this website is general in nature and does not constitute legal, residence, or immigration advice. For legally binding information, consult a lawyer or the competent authority.',
   },
 };
 
@@ -112,7 +116,7 @@ export default async function ForCandidates({ params }: { params: Promise<{ loca
           <h1 className="at-display" style={{ color: '#fff', margin: '0 0 var(--space-3)' }}>{t.h1}</h1>
           <p style={{ margin: '0 0 var(--space-4)', fontSize: '1.125rem', opacity: 0.9, lineHeight: 1.6 }}>{t.sub}</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-            <Link href={`${base}/career-consultation`} className="at-btn" style={{ background: '#fff', color: 'var(--at-alpine-green)', fontWeight: 700 }}>{t.ctaBook}</Link>
+            <Link href={`${base}/fragebogen`} className="at-btn" style={{ background: '#fff', color: 'var(--at-alpine-green)', fontWeight: 700 }}>{t.ctaBook}</Link>
             <Link href={`${base}/jobs`} className="at-btn" style={{ background: 'transparent', color: '#fff', boxShadow: 'inset 0 0 0 1.5px rgba(255,255,255,0.5)' }}>{t.ctaJobs}</Link>
           </div>
         </div>
@@ -132,6 +136,7 @@ export default async function ForCandidates({ params }: { params: Promise<{ loca
               </Link>
             ))}
           </div>
+          <p style={{ margin: 'var(--space-5) 0 0', fontSize: '0.8125rem', color: 'var(--text-subtle)', lineHeight: 1.6, maxWidth: 760 }}>{t.disclaimer}</p>
         </div>
       </section>
 
@@ -141,7 +146,7 @@ export default async function ForCandidates({ params }: { params: Promise<{ loca
           <h2 className="at-h1" style={{ margin: '0 0 8px' }}>{t.ctaT}</h2>
           <p style={{ margin: '0 0 var(--space-4)', color: 'var(--text-muted)' }}>{t.ctaB}</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'center' }}>
-            <Link href={`${base}/career-consultation`} className="at-btn at-btn--primary" style={{ fontWeight: 700 }}>{t.ctaBook}</Link>
+            <Link href={`${base}/fragebogen`} className="at-btn at-btn--primary" style={{ fontWeight: 700 }}>{t.ctaBook}</Link>
             <Link href={`${base}/jobs`} className="at-btn" style={{ boxShadow: 'inset 0 0 0 1.5px var(--primary)', color: 'var(--primary)' }}>{t.ctaJobs}</Link>
           </div>
         </div>
