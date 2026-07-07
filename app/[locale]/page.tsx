@@ -125,7 +125,7 @@ function buildOrgSchema() {
     sameAs: ['https://wa.me/436769124013'],
     areaServed: { '@type': 'Country', name: 'Austria' },
     description:
-      'Hospitality talent marketplace connecting Czech and Slovak professionals with Austrian hotels and restaurants.',
+      'Hospitality talent marketplace connecting Central European and international professionals with Austrian hotels and restaurants.',
   };
 }
 

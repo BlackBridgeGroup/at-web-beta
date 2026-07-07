@@ -59,7 +59,7 @@ const content: Record<Locale, FaqContent> = {
         items: [
           ['Wie schnell findet ihr Kandidaten?', 'Das hängt von Rolle, Region und Saison ab. Bei klaren Anforderungen starten wir sofort mit Suche und Prüfung.'],
           ['Was kostet AlpenTalent?', 'Die Konditionen hängen vom Bedarf ab. Für den Start empfehlen wir eine kurze Anfrage, damit wir Rolle, Volumen und Modell sauber klären.'],
-          ['Vermittelt ihr nur tschechische und slowakische Kandidaten?', 'Unser Schwerpunkt liegt auf zentral- und osteuropäischen Kandidaten, besonders CZ/SK. Je nach Rolle prüfen wir auch weitere passende Profile.'],
+          ['Vermittelt ihr nur EU-Kandidaten?', 'Unser Schwerpunkt liegt auf mitteleuropäischen Kandidaten (EU), zunehmend auch international. Je nach Rolle und Arbeitgeber prüfen wir passende Profile aus verschiedenen Ländern.'],
           ['Was passiert, wenn eine Vermittlung nicht klappt?', 'Für vermittelte Rollen können Ersatz- oder Nachbesetzungsregeln vereinbart werden. Die genauen Bedingungen gehören in die konkrete Vereinbarung.'],
         ],
       },
@@ -95,7 +95,7 @@ const content: Record<Locale, FaqContent> = {
         items: [
           ['Jak rychle najdete kandidáty?', 'Záleží na pozici, regionu a sezóně. Pokud je zadání jasné, začínáme se sourcingem a kontrolou okamžitě.'],
           ['Kolik AlpenTalent stojí?', 'Podmínky závisí na potřebě. Nejlepší je poslat krátkou poptávku, abychom vyjasnili roli, objem a model spolupráce.'],
-          ['Zprostředkováváte jen české a slovenské kandidáty?', 'Zaměřujeme se hlavně na kandidáty ze střední a východní Evropy, zejména CZ/SK. Podle role prověřujeme i další vhodné profily.'],
+          ['Zprostředkováváte jen kandidáty z EU?', 'Zaměřujeme se hlavně na kandidáty ze střední Evropy (EU), stále víc i mezinárodně. Podle role a zaměstnavatele prověřujeme vhodné profily z různých zemí.'],
           ['Co když umístění nevyjde?', 'U konkrétních rolí lze domluvit pravidla náhrady. Přesné podmínky patří do konkrétní dohody.'],
         ],
       },
@@ -131,7 +131,7 @@ const content: Record<Locale, FaqContent> = {
         items: [
           ['How quickly can you find candidates?', 'It depends on role, region, and season. With clear requirements, we can start sourcing and screening immediately.'],
           ['What does it cost?', 'Commercial terms depend on the hiring need. Send a short enquiry so we can clarify the role, volume, and collaboration model.'],
-          ['Do you only place Czech and Slovak candidates?', 'Our main focus is Central and Eastern European talent, especially CZ/SK. Depending on the role, we also review other suitable profiles.'],
+          ['Do you only place EU candidates?', 'Our main focus is Central European (EU) talent, increasingly international too. Depending on the role and employer, we review suitable profiles from various countries.'],
           ['What if a placement does not work out?', 'Replacement rules can be agreed for specific placements. The exact conditions belong in the concrete agreement.'],
         ],
       },

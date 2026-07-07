@@ -82,7 +82,7 @@ const T: Record<string, Content> = {
     faqEyebrow: 'FAQ', faqHeading: 'Fragen von Hotels',
     faq: [
       ['Wie schnell findet ihr Kandidaten?', 'Das hängt von Rolle, Region und Saison ab. Wenn das Anforderungsprofil klar ist, starten wir sofort mit Suche, Prüfung und Ansprache.'],
-      ['Vermittelt ihr nur tschechische und slowakische Kandidaten?', 'Unsere Spezialisierung sind Hospitality-Fachkräfte aus Mitteleuropa — Tschechien, Slowakei und zunehmend Ungarn und Rumänien. EU-Bürger dürfen in Österreich frei arbeiten, es gibt also keine Visa-Hürden.'],
+      ['Vermittelt ihr nur EU-Kandidaten?', 'Unser Kern sind Hospitality-Fachkräfte aus Mitteleuropa (EU) — sie dürfen in Österreich frei arbeiten, ohne Visa-Hürden. Zusätzlich arbeiten wir mit internationalen und Drittstaats-Kandidaten für Rollen, bei denen der Arbeitgeber den Prozess der Arbeitserlaubnis unterstützen kann.'],
       ['Was, wenn eine Vermittlung nicht klappt?', 'Bei Retained-Search-Vermittlungen bieten wir eine Ersatzgarantie. Verlässt ein vermittelter Kandidat innerhalb der Garantiezeit, suchen und vermitteln wir ohne zusätzliche Gebühr Ersatz. Details stehen in deiner Vereinbarung.'],
       ['Koordiniert ihr die Unterkunft?', 'Wir kommunizieren deine Wohnsituation beim Matching an die Kandidaten — viele bevorzugen Stellen mit Personalunterkunft. Wir beraten, wie du dein Angebot klar darstellst; die Unterkunft selbst organisieren wir nicht.'],
       ['Kann ich ohne Registrierung eine Stelle ausschreiben?', 'Für die Ausschreibung brauchst du eine kurze Google-Anmeldung. Wir prüfen deine Hoteldaten vor dem Matching, damit Kandidaten nur seriöse Anfragen sehen.'],
@@ -150,7 +150,7 @@ const T: Record<string, Content> = {
     faqEyebrow: 'FAQ', faqHeading: 'Questions from hotels',
     faq: [
       ['How quickly can you find candidates?', 'It depends on role, region, and season. Once the requirement is clear, we start sourcing, screening, and outreach immediately.'],
-      ['Do you only place Czech and Slovak candidates?', 'Our primary specialisation is Central European hospitality talent — Czech Republic, Slovakia, and increasingly Hungary and Romania. EU citizens have the right to work freely in Austria, so there are no visa hurdles.'],
+      ['Do you only place EU candidates?', 'Our core is Central European (EU) hospitality talent — free to work in Austria with no visa hurdles. We also work with international and third-country candidates for roles where the employer can support the work-permit process.'],
       ["What if a placement doesn't work out?", 'We offer a replacement guarantee period on retained search placements. If a placed candidate leaves within the guarantee window, we source and place a replacement at no additional fee. Details are in your service agreement.'],
       ['Do you coordinate housing?', 'We communicate your housing situation to candidates during matching — many prioritise roles with staff housing. We advise on how to present your housing offering clearly; we do not arrange housing on your behalf.'],
       ['Can I post a vacancy without registering?', 'You need a quick Google sign-in to post a vacancy. We verify hotel details before matching so candidates only see serious enquiries.'],

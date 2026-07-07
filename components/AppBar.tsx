@@ -58,7 +58,7 @@ export function AppBar({ locale }: AppBarProps) {
           className="at-desktop-nav"
         >
           <NavLink href={`${base}/jobs`}>{n.jobs}</NavLink>
-          <NavLink href={`${base}/entry-consultation`}>{n.consultation}</NavLink>
+          <NavLink href={`${base}/for-candidates`}>{n.forCandidates}</NavLink>
           <NavLink href={`${base}/for-employers`}>{n.forEmployers}</NavLink>
           <NavLink href={`${base}/how-it-works`}>{n.howItWorks}</NavLink>
           <NavLink href={`${base}/resources`}>{n.resources}</NavLink>
@@ -126,7 +126,7 @@ export function AppBar({ locale }: AppBarProps) {
           <div className="at-container" style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             {[
               [n.jobs, `${base}/jobs`],
-              [n.consultation, `${base}/entry-consultation`],
+              [n.forCandidates, `${base}/for-candidates`],
               [n.forEmployers, `${base}/for-employers`],
               [n.howItWorks, `${base}/how-it-works`],
               [n.resources, `${base}/resources`],
