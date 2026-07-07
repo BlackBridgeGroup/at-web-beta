@@ -48,8 +48,8 @@ const T: Record<string, Content> = {
     cardsEyebrow: 'Wie wir dir helfen',
     cards: [
       { title: 'In Österreich arbeiten', body: 'Hotels und Restaurants in ganz Österreich — mit Perspektive auf Deutschland und die Schweiz.', href: '/jobs', cta: 'Offene Rollen ansehen' },
-      { title: 'Entry Consultation', body: 'Für Fachkräfte von außerhalb der EU (€100): Assessment, Dokumentenprüfung, Marktorientierung, Aktionsplan. EU-Bürger:innen brauchen sie nicht.', href: '/entry-consultation', cta: 'Mehr erfahren' },
-      { title: 'Kandidatenpool', body: 'Ist dein Profil in unserem Pool, matchen wir dich mit passenden offenen Rollen — nur mit deiner Zustimmung.', href: '/entry-consultation', cta: 'So kommst du rein' },
+      { title: 'Career Consultation', body: 'Für Fachkräfte von außerhalb der EU (€100): Assessment, Dokumentenprüfung, Marktorientierung, Aktionsplan. EU-Bürger:innen brauchen sie nicht.', href: '/career-consultation', cta: 'Mehr erfahren' },
+      { title: 'Kandidatenpool', body: 'Ist dein Profil in unserem Pool, matchen wir dich mit passenden offenen Rollen — nur mit deiner Zustimmung.', href: '/career-consultation', cta: 'So kommst du rein' },
       { title: 'Hospitality-Jobs', body: 'Rezeption, Küche, Service, Housekeeping, Management — Rollen für jede Erfahrungsstufe.', href: '/jobs', cta: 'Jobs durchsuchen' },
       { title: 'Karriere-Orientierung', body: 'Gehälter, Regionen, Saison, Umzug — praktische Guides, damit du weißt, was dich erwartet.', href: '/resources', cta: 'Ratgeber lesen' },
       { title: 'Gehaltsguide', body: 'Reale Gehaltsspannen für Hospitality-Rollen in Österreich, ehrlich und aktuell.', href: '/salary-guide', cta: 'Gehälter ansehen' },
@@ -64,8 +64,8 @@ const T: Record<string, Content> = {
     cardsEyebrow: 'Jak ti pomůžeme',
     cards: [
       { title: 'Práce v Rakousku', body: 'Hotely a restaurace po celém Rakousku — s perspektivou Německa a Švýcarska.', href: '/jobs', cta: 'Zobrazit pozice' },
-      { title: 'Vstupní konzultace', body: 'Pro pracovníky mimo EU (€100): posouzení, revize dokumentů, orientace na trhu, akční plán. Občané EU ji nepotřebují.', href: '/entry-consultation', cta: 'Zjistit více' },
-      { title: 'Kandidátský pool', body: 'Když je tvůj profil v poolu, spárujeme tě s vhodnými otevřenými pozicemi — jen s tvým souhlasem.', href: '/entry-consultation', cta: 'Jak se dostat dovnitř' },
+      { title: 'Kariérní konzultace', body: 'Pro pracovníky mimo EU (€100): posouzení, revize dokumentů, orientace na trhu, akční plán. Občané EU ji nepotřebují.', href: '/career-consultation', cta: 'Zjistit více' },
+      { title: 'Kandidátský pool', body: 'Když je tvůj profil v poolu, spárujeme tě s vhodnými otevřenými pozicemi — jen s tvým souhlasem.', href: '/career-consultation', cta: 'Jak se dostat dovnitř' },
       { title: 'Pozice v hotelnictví', body: 'Recepce, kuchyně, obsluha, úklid, management — role pro každou úroveň praxe.', href: '/jobs', cta: 'Procházet pozice' },
       { title: 'Kariérní orientace', body: 'Platy, regiony, sezóna, přesun — praktické průvodce, ať víš, co tě čeká.', href: '/resources', cta: 'Číst rádce' },
       { title: 'Průvodce platy', body: 'Reálná platová rozpětí pro pozice v hotelnictví v Rakousku, upřímně a aktuálně.', href: '/salary-guide', cta: 'Zobrazit platy' },
@@ -80,8 +80,8 @@ const T: Record<string, Content> = {
     cardsEyebrow: 'How we help you',
     cards: [
       { title: 'Work in Austria', body: 'Hotels and restaurants across Austria — with a path toward Germany and Switzerland.', href: '/jobs', cta: 'See open roles' },
-      { title: 'Entry Consultation', body: 'For professionals from outside the EU (€100): assessment, document review, market orientation, action plan. EU citizens don’t need it.', href: '/entry-consultation', cta: 'Learn more' },
-      { title: 'Candidate pool', body: 'Once your profile is in our pool, we match you with suitable open roles — only with your consent.', href: '/entry-consultation', cta: 'How to join' },
+      { title: 'Career Consultation', body: 'For professionals from outside the EU (€100): assessment, document review, market orientation, action plan. EU citizens don’t need it.', href: '/career-consultation', cta: 'Learn more' },
+      { title: 'Candidate pool', body: 'Once your profile is in our pool, we match you with suitable open roles — only with your consent.', href: '/career-consultation', cta: 'How to join' },
       { title: 'Hospitality jobs', body: 'Reception, kitchen, service, housekeeping, management — roles for every experience level.', href: '/jobs', cta: 'Browse jobs' },
       { title: 'Career guidance', body: 'Salaries, regions, seasons, relocation — practical guides so you know what to expect.', href: '/resources', cta: 'Read the guides' },
       { title: 'Salary guide', body: 'Real salary ranges for hospitality roles in Austria — honest and current.', href: '/salary-guide', cta: 'See salaries' },
@@ -112,7 +112,7 @@ export default async function ForCandidates({ params }: { params: Promise<{ loca
           <h1 className="at-display" style={{ color: '#fff', margin: '0 0 var(--space-3)' }}>{t.h1}</h1>
           <p style={{ margin: '0 0 var(--space-4)', fontSize: '1.125rem', opacity: 0.9, lineHeight: 1.6 }}>{t.sub}</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-            <Link href={`${base}/entry-consultation`} className="at-btn" style={{ background: '#fff', color: 'var(--at-alpine-green)', fontWeight: 700 }}>{t.ctaBook}</Link>
+            <Link href={`${base}/career-consultation`} className="at-btn" style={{ background: '#fff', color: 'var(--at-alpine-green)', fontWeight: 700 }}>{t.ctaBook}</Link>
             <Link href={`${base}/jobs`} className="at-btn" style={{ background: 'transparent', color: '#fff', boxShadow: 'inset 0 0 0 1.5px rgba(255,255,255,0.5)' }}>{t.ctaJobs}</Link>
           </div>
         </div>
@@ -141,7 +141,7 @@ export default async function ForCandidates({ params }: { params: Promise<{ loca
           <h2 className="at-h1" style={{ margin: '0 0 8px' }}>{t.ctaT}</h2>
           <p style={{ margin: '0 0 var(--space-4)', color: 'var(--text-muted)' }}>{t.ctaB}</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'center' }}>
-            <Link href={`${base}/entry-consultation`} className="at-btn at-btn--primary" style={{ fontWeight: 700 }}>{t.ctaBook}</Link>
+            <Link href={`${base}/career-consultation`} className="at-btn at-btn--primary" style={{ fontWeight: 700 }}>{t.ctaBook}</Link>
             <Link href={`${base}/jobs`} className="at-btn" style={{ boxShadow: 'inset 0 0 0 1.5px var(--primary)', color: 'var(--primary)' }}>{t.ctaJobs}</Link>
           </div>
         </div>

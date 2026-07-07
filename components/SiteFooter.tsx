@@ -15,7 +15,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
       title: f.colCandidates,
       links: [
         [f.linkFindJobs, '/jobs'],
-        [f.linkConsultation, '/entry-consultation'],
+        [f.linkConsultation, '/career-consultation'],
         [f.linkHowItWorks, '/how-it-works'],
         [f.linkSalaryGuide, '/salary-guide'],
         [f.linkRegions, '/regions'],

@@ -67,8 +67,8 @@ const T: Record<string, Content> = {
       { name: 'Housekeeping', salary: '€1.700 – €2.000', regions: 'Alle Regionen', desc: 'Zimmerreinigung und -pflege. Verlässlichkeit zählt mehr als Sprache.', housing: true },
       { name: 'Hotel Management', salary: '€3.500 – €5.000+', regions: 'Alle Regionen', desc: 'Betriebs- und Abteilungsleitung. Mehrjährige Erfahrung vorausgesetzt.' },
     ],
-    ctaT: 'Passt eine dieser Rollen zu dir?', ctaB: 'Sende dein Profil oder buche eine Entry Consultation — wir melden uns mit passenden Rollen.',
-    ctaBook: 'Entry Consultation', ctaProfile: 'Profil senden',
+    ctaT: 'Passt eine dieser Rollen zu dir?', ctaB: 'Sende dein Profil oder buche eine Career Consultation — wir melden uns mit passenden Rollen.',
+    ctaBook: 'Career Consultation', ctaProfile: 'Profil senden',
     disclaimer: 'Dies ist ein Überblick der Rollen, die wir vermitteln — keine Liste tagesaktueller Einzelstellen. Konkrete offene Positionen stimmen wir individuell nach deinem Profil ab.',
   },
   cz: {
@@ -98,8 +98,8 @@ const T: Record<string, Content> = {
       { name: 'Housekeeping', salary: '€1.700 – €2.000', regions: 'Všechny regiony', desc: 'Úklid a péče o pokoje. Spolehlivost víc než jazyk.', housing: true },
       { name: 'Hotel management', salary: '€3.500 – €5.000+', regions: 'Všechny regiony', desc: 'Vedení provozu či oddělení. Nutná víceletá praxe.' },
     ],
-    ctaT: 'Sedí ti některá z těch rolí?', ctaB: 'Pošli profil nebo si rezervuj vstupní konzultaci — ozveme se s vhodnými rolemi.',
-    ctaBook: 'Vstupní konzultace', ctaProfile: 'Vyplnit profil',
+    ctaT: 'Sedí ti některá z těch rolí?', ctaB: 'Pošli profil nebo si rezervuj kariérní konzultaci — ozveme se s vhodnými rolemi.',
+    ctaBook: 'Kariérní konzultace', ctaProfile: 'Vyplnit profil',
     disclaimer: 'Tohle je přehled rolí, které umísťujeme — ne seznam denně aktualizovaných jednotlivých inzerátů. Konkrétní otevřené pozice ladíme individuálně podle tvého profilu.',
   },
   en: {
@@ -129,8 +129,8 @@ const T: Record<string, Content> = {
       { name: 'Housekeeping', salary: '€1,700 – €2,000', regions: 'All regions', desc: 'Room cleaning and care. Reliability matters more than language.', housing: true },
       { name: 'Hotel Management', salary: '€3,500 – €5,000+', regions: 'All regions', desc: 'Property or department leadership. Several years of experience required.' },
     ],
-    ctaT: 'Does one of these roles fit you?', ctaB: 'Send your profile or book an Entry Consultation — we reach out with matching roles.',
-    ctaBook: 'Entry Consultation', ctaProfile: 'Send profile',
+    ctaT: 'Does one of these roles fit you?', ctaB: 'Send your profile or book an Career Consultation — we reach out with matching roles.',
+    ctaBook: 'Career Consultation', ctaProfile: 'Send profile',
     disclaimer: 'This is an overview of the roles we place — not a list of day-to-day individual vacancies. Specific open positions are matched to you individually based on your profile.',
   },
 };
@@ -208,7 +208,7 @@ export default async function JobsPage({ params }: { params: Promise<{ locale: s
           <h2 className="at-h1" style={{ color: '#fff', margin: '0 0 8px' }}>{t.ctaT}</h2>
           <p style={{ margin: '0 0 var(--space-4)', opacity: 0.9 }}>{t.ctaB}</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'center' }}>
-            <Link href={`/${locale}/entry-consultation`} className="at-btn" style={{ background: '#fff', color: 'var(--at-alpine-green)', fontWeight: 700 }}>{t.ctaBook}</Link>
+            <Link href={`/${locale}/career-consultation`} className="at-btn" style={{ background: '#fff', color: 'var(--at-alpine-green)', fontWeight: 700 }}>{t.ctaBook}</Link>
             <Link href={`/${locale}/fragebogen`} className="at-btn" style={{ background: 'transparent', color: '#fff', boxShadow: 'inset 0 0 0 1.5px rgba(255,255,255,0.5)' }}>{t.ctaProfile}</Link>
           </div>
         </div>

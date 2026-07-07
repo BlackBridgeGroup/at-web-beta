@@ -8,7 +8,7 @@ const publicRoutes = [
   'about',
   'contact',
   'datenschutz',
-  'entry-consultation',
+  'career-consultation',
   'for-candidates',
   'faq',
   'for-employers',
