@@ -46,6 +46,7 @@ const ICONS = [
 
 type Content = {
   hero: { eyebrow: string; h1: string; sub: string; price: string; book: string; ask: string };
+  audienceTitle: string; audienceBody: string; audienceLink: string;
   incEyebrow: string; incHeading: string;
   includes: { title: string; body: string }[];
   howEyebrow: string; howHeading: string; steps: [string, string, string][];
@@ -58,13 +59,16 @@ type Content = {
 const T: Record<string, Content> = {
   de: {
     hero: {
-      eyebrow: 'Für Kandidat:innen · Karriereberatung',
-      h1: 'Starte deine Hospitality-Karriere in der DACH-Region.',
-      sub: 'Eine professionelle Karriereberatung für die Hotellerie — Assessment, Dokumentenprüfung, Marktorientierung und ein persönlicher Aktionsplan. Danach kommst du in unseren Kandidatenpool.',
+      eyebrow: 'Für internationale Kandidat:innen · Karriereberatung',
+      h1: 'Starte deine Hospitality-Karriere in Österreich.',
+      sub: 'Für Fachkräfte von außerhalb der EU: eine professionelle Karriereberatung für den Einstieg in die österreichische Hotellerie — Assessment, Dokumentenprüfung, Marktorientierung und ein persönlicher Aktionsplan. Danach kommst du in unseren Kandidatenpool.',
       price: '€100 · einmalig · für die Beratung',
       book: 'Beratung buchen',
       ask: 'Erst Fragen? WhatsApp',
     },
+    audienceTitle: 'Bist du EU-Bürger:in?',
+    audienceBody: 'Dann darfst du in Österreich frei arbeiten und brauchst diese Beratung nicht. Für dich geht es direkt und kostenlos zu den offenen Rollen. Die Entry Consultation ist für Fachkräfte von außerhalb der EU gedacht, die einen Weg nach Österreich aufbauen.',
+    audienceLink: 'Offene Rollen ansehen →',
     incEyebrow: 'Was du bekommst', incHeading: 'Deine Entry Consultation.',
     includes: [
       { title: 'Persönliche Beratung', body: 'Ein 1:1-Gespräch über deine Ziele, Erfahrung und realistische Wege in der DACH-Hotellerie.' },
@@ -91,20 +95,23 @@ const T: Record<string, Content> = {
       ['Was bekomme ich für €100?', 'Eine persönliche Beratung, ein Assessment deines Profils, CV- und Dokumentenprüfung, eine DACH-Marktorientierung, die Aufnahme in unseren Kandidatenpool und einen persönlichen Aktionsplan.'],
       ['Garantiert ihr mir einen Job oder ein Visum?', 'Nein. Die Entry Consultation ist Beratung. Wir garantieren weder Anstellung noch Visum noch Arbeitserlaubnis und geben keine Rechtsberatung. Wir helfen dir, dich professionell und realistisch zu positionieren.'],
       ['Muss ich später für die Vermittlung zahlen?', 'Nein. Das Erfolgshonorar für eine Vermittlung zahlen die Arbeitgeber. Als Kandidat:in zahlst du nur die einmalige Beratung.'],
-      ['Für wen ist das gedacht?', 'Für Hospitality-Fachkräfte aus der EU und international (u. a. Nepal, Philippinen, Indien, Sri Lanka, Indonesien, Vietnam), die eine Karriere in Österreich, Deutschland oder der Schweiz aufbauen wollen.'],
+      ['Für wen ist das gedacht?', 'Für Hospitality-Fachkräfte von außerhalb der EU — z. B. Nepal, Philippinen, Indien, Sri Lanka, Indonesien, Vietnam. EU-Bürger:innen dürfen in Österreich ohne Bewilligung arbeiten und brauchen keine Beratung; für sie führt der Weg direkt und kostenlos über die offenen Rollen.'],
       ['Was passiert nach der Beratung?', 'Dein Profil bleibt in unserem Pool. Wenn eine offene Rolle zu dir passt, melden wir uns und starten den Recruiting-Prozess — nur mit deiner Zustimmung.'],
     ],
     ctaT: 'Bereit für den ersten Schritt?', ctaB: '30 Minuten. Ehrliche Einschätzung. Danach weißt du, wo du stehst.', ctaBtn: 'Beratung buchen',
   },
   cz: {
     hero: {
-      eyebrow: 'Pro uchazeče · Kariérní poradenství',
-      h1: 'Nastartuj svou kariéru v hotelnictví v regionu DACH.',
-      sub: 'Profesionální kariérní konzultace pro hotelnictví — posouzení, revize dokumentů, orientace na trhu a osobní akční plán. Poté se dostaneš do našeho kandidátského poolu.',
+      eyebrow: 'Pro mezinárodní uchazeče · Kariérní poradenství',
+      h1: 'Nastartuj svou kariéru v hotelnictví v Rakousku.',
+      sub: 'Pro pracovníky mimo EU: profesionální kariérní konzultace pro vstup do rakouského hotelnictví — posouzení, revize dokumentů, orientace na trhu a osobní akční plán. Poté se dostaneš do našeho kandidátského poolu.',
       price: '€100 · jednorázově · za konzultaci',
       book: 'Rezervovat konzultaci',
       ask: 'Nejdřív dotazy? WhatsApp',
     },
+    audienceTitle: 'Jsi občan EU?',
+    audienceBody: 'Pak můžeš v Rakousku pracovat volně a tuhle konzultaci nepotřebuješ. Pro tebe vede cesta rovnou a zdarma na otevřené pozice. Vstupní konzultace je pro pracovníky mimo EU, kteří si budují cestu do Rakouska.',
+    audienceLink: 'Zobrazit otevřené pozice →',
     incEyebrow: 'Co dostaneš', incHeading: 'Tvá vstupní konzultace.',
     includes: [
       { title: 'Osobní konzultace', body: 'Rozhovor 1:1 o tvých cílech, praxi a reálných cestách v DACH hotelnictví.' },
@@ -131,20 +138,23 @@ const T: Record<string, Content> = {
       ['Co dostanu za €100?', 'Osobní konzultaci, posouzení profilu, revizi CV a dokumentů, orientaci na trhu DACH, zařazení do kandidátského poolu a osobní akční plán.'],
       ['Garantujete práci nebo vízum?', 'Ne. Vstupní konzultace je poradenství. Negarantujeme zaměstnání, vízum ani pracovní povolení a neposkytujeme právní poradenství. Pomůžeme ti nastavit se profesionálně a realisticky.'],
       ['Musím pak platit za nábor?', 'Ne. Success fee za umístění platí zaměstnavatelé. Jako uchazeč platíš jen jednorázovou konzultaci.'],
-      ['Pro koho to je?', 'Pro pracovníky v hotelnictví z EU i mezinárodně (mj. Nepál, Filipíny, Indie, Srí Lanka, Indonésie, Vietnam), kteří chtějí budovat kariéru v Rakousku, Německu nebo Švýcarsku.'],
+      ['Pro koho to je?', 'Pro pracovníky v hotelnictví mimo EU — např. Nepál, Filipíny, Indie, Srí Lanka, Indonésie, Vietnam. Občané EU můžou v Rakousku pracovat bez povolení a konzultaci nepotřebují; pro ně vede cesta rovnou a zdarma přes otevřené pozice.'],
       ['Co se děje po konzultaci?', 'Tvůj profil zůstává v poolu. Když se objeví vhodná pozice, ozveme se a spustíme nábor — jen s tvým souhlasem.'],
     ],
     ctaT: 'Připraven udělat první krok?', ctaB: '30 minut. Upřímné zhodnocení. Pak víš, kde stojíš.', ctaBtn: 'Rezervovat konzultaci',
   },
   en: {
     hero: {
-      eyebrow: 'For candidates · Career consulting',
-      h1: 'Start your hospitality career across the DACH region.',
-      sub: 'A professional hospitality career consultation — assessment, document review, market orientation, and a personal action plan. Afterwards you enter our candidate pool.',
+      eyebrow: 'For international candidates · Career consulting',
+      h1: 'Start your hospitality career in Austria.',
+      sub: 'For professionals from outside the EU: a professional career consultation for entering Austrian hospitality — assessment, document review, market orientation, and a personal action plan. Afterwards you enter our candidate pool.',
       price: '€100 · one-time · for the consultation',
       book: 'Book a consultation',
       ask: 'Questions first? WhatsApp',
     },
+    audienceTitle: 'Are you an EU citizen?',
+    audienceBody: 'Then you can work in Austria freely and don’t need this consultation. For you the path goes straight to the open roles, for free. The Entry Consultation is for professionals from outside the EU building a path to Austria.',
+    audienceLink: 'See open roles →',
     incEyebrow: 'What you get', incHeading: 'Your Entry Consultation.',
     includes: [
       { title: 'Personal consultation', body: 'A 1:1 conversation about your goals, experience, and realistic paths in DACH hospitality.' },
@@ -171,7 +181,7 @@ const T: Record<string, Content> = {
       ['What do I get for €100?', 'A personal consultation, an assessment of your profile, a CV and document review, a DACH market orientation, entry into our candidate pool, and a personal action plan.'],
       ['Do you guarantee a job or a visa?', 'No. The Entry Consultation is consulting. We do not guarantee employment, a visa, or a work permit, and we do not give legal advice. We help you position yourself professionally and realistically.'],
       ['Do I have to pay for placement later?', 'No. The placement success fee is paid by employers. As a candidate you only pay the one-time consultation.'],
-      ['Who is this for?', 'Hospitality professionals from the EU and internationally (incl. Nepal, Philippines, India, Sri Lanka, Indonesia, Vietnam) who want to build a career in Austria, Germany, or Switzerland.'],
+      ['Who is this for?', 'Hospitality professionals from outside the EU — e.g. Nepal, Philippines, India, Sri Lanka, Indonesia, Vietnam. EU citizens can work in Austria without a permit and don’t need this; for them the path goes straight to the open roles, for free.'],
       ['What happens after the consultation?', 'Your profile stays in our pool. When a suitable role comes up, we reach out and start the recruitment process — only with your consent.'],
     ],
     ctaT: 'Ready to take the first step?', ctaB: '30 minutes. An honest read. Afterwards you know where you stand.', ctaBtn: 'Book a consultation',
@@ -207,6 +217,17 @@ export default async function EntryConsultation({ params }: { params: Promise<{ 
           </div>
         </div>
         <div style={{ marginTop: 64 }}><Ridge variant="hero" opacity={1} /></div>
+      </section>
+
+      {/* Audience clarifier — EU vs non-EU */}
+      <section style={{ paddingBlock: 'var(--space-5)', background: 'var(--bg-sunken)', borderBottom: '1px solid var(--border)' }}>
+        <div className="at-container" style={{ maxWidth: 820, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
+          <div style={{ maxWidth: 620 }}>
+            <p style={{ margin: '0 0 4px', fontWeight: 700, color: 'var(--text)' }}>{t.audienceTitle}</p>
+            <p style={{ margin: 0, fontSize: '0.9375rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>{t.audienceBody}</p>
+          </div>
+          <Link href={`/${locale}/jobs`} className="at-btn" style={{ boxShadow: 'inset 0 0 0 1.5px var(--primary)', color: 'var(--primary)', fontWeight: 700, whiteSpace: 'nowrap' }}>{t.audienceLink}</Link>
+        </div>
       </section>
 
       {/* What's included */}

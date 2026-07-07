@@ -48,7 +48,7 @@ const T: Record<string, Content> = {
     cardsEyebrow: 'Wie wir dir helfen',
     cards: [
       { title: 'In Österreich arbeiten', body: 'Hotels und Restaurants in ganz Österreich — mit Perspektive auf Deutschland und die Schweiz.', href: '/jobs', cta: 'Offene Rollen ansehen' },
-      { title: 'Entry Consultation', body: 'Professionelle Karriereberatung (€100): Assessment, Dokumentenprüfung, Marktorientierung, Aktionsplan.', href: '/entry-consultation', cta: 'Mehr erfahren' },
+      { title: 'Entry Consultation', body: 'Für Fachkräfte von außerhalb der EU (€100): Assessment, Dokumentenprüfung, Marktorientierung, Aktionsplan. EU-Bürger:innen brauchen sie nicht.', href: '/entry-consultation', cta: 'Mehr erfahren' },
       { title: 'Kandidatenpool', body: 'Ist dein Profil in unserem Pool, matchen wir dich mit passenden offenen Rollen — nur mit deiner Zustimmung.', href: '/entry-consultation', cta: 'So kommst du rein' },
       { title: 'Hospitality-Jobs', body: 'Rezeption, Küche, Service, Housekeeping, Management — Rollen für jede Erfahrungsstufe.', href: '/jobs', cta: 'Jobs durchsuchen' },
       { title: 'Karriere-Orientierung', body: 'Gehälter, Regionen, Saison, Umzug — praktische Guides, damit du weißt, was dich erwartet.', href: '/resources', cta: 'Ratgeber lesen' },
@@ -64,7 +64,7 @@ const T: Record<string, Content> = {
     cardsEyebrow: 'Jak ti pomůžeme',
     cards: [
       { title: 'Práce v Rakousku', body: 'Hotely a restaurace po celém Rakousku — s perspektivou Německa a Švýcarska.', href: '/jobs', cta: 'Zobrazit pozice' },
-      { title: 'Vstupní konzultace', body: 'Profesionální kariérní poradenství (€100): posouzení, revize dokumentů, orientace na trhu, akční plán.', href: '/entry-consultation', cta: 'Zjistit více' },
+      { title: 'Vstupní konzultace', body: 'Pro pracovníky mimo EU (€100): posouzení, revize dokumentů, orientace na trhu, akční plán. Občané EU ji nepotřebují.', href: '/entry-consultation', cta: 'Zjistit více' },
       { title: 'Kandidátský pool', body: 'Když je tvůj profil v poolu, spárujeme tě s vhodnými otevřenými pozicemi — jen s tvým souhlasem.', href: '/entry-consultation', cta: 'Jak se dostat dovnitř' },
       { title: 'Pozice v hotelnictví', body: 'Recepce, kuchyně, obsluha, úklid, management — role pro každou úroveň praxe.', href: '/jobs', cta: 'Procházet pozice' },
       { title: 'Kariérní orientace', body: 'Platy, regiony, sezóna, přesun — praktické průvodce, ať víš, co tě čeká.', href: '/resources', cta: 'Číst rádce' },
@@ -80,7 +80,7 @@ const T: Record<string, Content> = {
     cardsEyebrow: 'How we help you',
     cards: [
       { title: 'Work in Austria', body: 'Hotels and restaurants across Austria — with a path toward Germany and Switzerland.', href: '/jobs', cta: 'See open roles' },
-      { title: 'Entry Consultation', body: 'Professional career consulting (€100): assessment, document review, market orientation, action plan.', href: '/entry-consultation', cta: 'Learn more' },
+      { title: 'Entry Consultation', body: 'For professionals from outside the EU (€100): assessment, document review, market orientation, action plan. EU citizens don’t need it.', href: '/entry-consultation', cta: 'Learn more' },
       { title: 'Candidate pool', body: 'Once your profile is in our pool, we match you with suitable open roles — only with your consent.', href: '/entry-consultation', cta: 'How to join' },
       { title: 'Hospitality jobs', body: 'Reception, kitchen, service, housekeeping, management — roles for every experience level.', href: '/jobs', cta: 'Browse jobs' },
       { title: 'Career guidance', body: 'Salaries, regions, seasons, relocation — practical guides so you know what to expect.', href: '/resources', cta: 'Read the guides' },
