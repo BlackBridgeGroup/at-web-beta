@@ -49,7 +49,7 @@ type Content = {
   incEyebrow: string; incHeading: string;
   includes: { title: string; body: string }[];
   howEyebrow: string; howHeading: string; steps: [string, string, string][];
-  priceEyebrow: string; priceHeading: string; priceName: string; priceValue: string; priceNote: string; priceLegal: string; priceCta: string;
+  priceEyebrow: string; priceHeading: string; priceName: string; priceValue: string; priceNote: string; priceMethod: string; priceLegal: string; priceCta: string;
   legalTitle: string; legalBody: string;
   faqEyebrow: string; faqHeading: string; faq: [string, string][];
   ctaT: string; ctaB: string; ctaBtn: string;
@@ -81,7 +81,7 @@ const T: Record<string, Content> = {
       ['03', 'Pool & nächste Schritte', 'Dein Profil kommt in den Pool. Passt du auf eine offene Rolle, starten wir den Recruiting-Prozess.'],
     ],
     priceEyebrow: 'Preis', priceHeading: 'Ein klarer Preis, keine Überraschungen.',
-    priceName: 'Entry Consultation', priceValue: '€100', priceNote: 'Einmalig, für die professionelle Beratung.',
+    priceName: 'Entry Consultation', priceValue: '€100', priceNote: 'Einmalig, für die professionelle Beratung.', priceMethod: 'Bezahlung per Rechnung und Überweisung — nach der Buchung senden wir dir eine Rechnung.',
     priceLegal: 'Der Betrag ist die Bezahlung für Beratung — nicht für eine Anstellung und nicht für ein Visum.',
     priceCta: 'Beratung buchen',
     legalTitle: 'Wichtig — bitte lesen',
@@ -121,7 +121,7 @@ const T: Record<string, Content> = {
       ['03', 'Pool a další kroky', 'Tvůj profil jde do poolu. Když sedneš na otevřenou pozici, spustíme nábor.'],
     ],
     priceEyebrow: 'Cena', priceHeading: 'Jasná cena, žádná překvapení.',
-    priceName: 'Vstupní konzultace', priceValue: '€100', priceNote: 'Jednorázově, za profesionální poradenství.',
+    priceName: 'Vstupní konzultace', priceValue: '€100', priceNote: 'Jednorázově, za profesionální poradenství.', priceMethod: 'Platba fakturou a převodem — po rezervaci ti pošleme fakturu.',
     priceLegal: 'Částka je platbou za poradenství — ne za zaměstnání a ne za vízum.',
     priceCta: 'Rezervovat konzultaci',
     legalTitle: 'Důležité — přečti si',
@@ -161,7 +161,7 @@ const T: Record<string, Content> = {
       ['03', 'Pool & next steps', 'Your profile enters the pool. If you fit an open role, we start the recruitment process.'],
     ],
     priceEyebrow: 'Price', priceHeading: 'One clear price, no surprises.',
-    priceName: 'Entry Consultation', priceValue: '€100', priceNote: 'One-time, for the professional consultation.',
+    priceName: 'Entry Consultation', priceValue: '€100', priceNote: 'One-time, for the professional consultation.', priceMethod: 'Payment by invoice and bank transfer — we send you an invoice after booking.',
     priceLegal: 'The fee is payment for consulting — not for employment, and not for a visa.',
     priceCta: 'Book a consultation',
     legalTitle: 'Important — please read',
@@ -246,6 +246,7 @@ export default async function EntryConsultation({ params }: { params: Promise<{ 
             <p style={{ margin: '0 0 4px', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>{t.priceName}</p>
             <p style={{ margin: '0 0 4px', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '3rem', color: 'var(--at-alpine-green)', lineHeight: 1 }}>{t.priceValue}</p>
             <p style={{ margin: '0 0 var(--space-2)', fontSize: '0.9375rem', color: 'var(--text-muted)' }}>{t.priceNote}</p>
+            <p style={{ margin: '0 0 var(--space-2)', fontSize: '0.8125rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>{t.priceMethod}</p>
             <p style={{ margin: '0 0 var(--space-3)', fontSize: '0.8125rem', color: 'var(--text-subtle)', lineHeight: 1.6 }}>{t.priceLegal}</p>
             <Link href={contactHref} className="at-btn at-btn--primary" style={{ width: '100%', justifyContent: 'center', fontWeight: 700 }}>{t.priceCta}</Link>
           </div>

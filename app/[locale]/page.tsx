@@ -214,6 +214,35 @@ export default async function LocaleHome({
       {/* 2. Trust bar */}
       <TrustBar variant={isEmployer ? 'employer' : 'candidate'} locale={locale} />
 
+      {/* 2b. Audience signpost */}
+      {(() => {
+        const R: Record<string, { cand: [string, string, string]; emp: [string, string, string] }> = {
+          de: { cand: ['Ich suche Arbeit', 'Karriere in der DACH-Hotellerie — Beratung, Kandidatenpool und offene Rollen.', 'Für Kandidaten'], emp: ['Ich suche Personal', 'Vorgeprüfte, sprachlich passende Fachkräfte für dein Hotel oder Restaurant.', 'Für Arbeitgeber'] },
+          cz: { cand: ['Hledám práci', 'Kariéra v hotelnictví v regionu DACH — konzultace, pool a otevřené pozice.', 'Pro uchazeče'], emp: ['Hledám personál', 'Prověření, jazykově vhodní pracovníci pro váš hotel nebo restauraci.', 'Pro zaměstnavatele'] },
+          en: { cand: ['I’m looking for work', 'A career in DACH hospitality — consultation, candidate pool, and open roles.', 'For Candidates'], emp: ['I’m hiring', 'Pre-screened, language-matched talent for your hotel or restaurant.', 'For Employers'] },
+        };
+        const r = R[locale] ?? R.de;
+        const cards: { d: [string, string, string]; href: string }[] = [
+          { d: r.cand, href: `/${locale}/for-candidates` },
+          { d: r.emp, href: `/${locale}/for-employers` },
+        ];
+        return (
+          <section style={{ paddingBlock: 'var(--space-7)' }}>
+            <div className="at-container">
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-3)' }}>
+                {cards.map(({ d, href }) => (
+                  <Link key={href} href={href} className="at-card" style={{ padding: 'var(--space-5)', textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <p className="at-h2" style={{ margin: 0 }}>{d[0]}</p>
+                    <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: 1.6, flex: 1 }}>{d[1]}</p>
+                    <span style={{ color: 'var(--at-alpine-green)', fontWeight: 700 }}>{d[2]} →</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
+
       {/* 3. Why AlpenTalent */}
       <BentoSection
         eyebrow={hp.why.eyebrow}
